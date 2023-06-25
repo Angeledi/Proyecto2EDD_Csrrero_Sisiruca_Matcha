@@ -98,6 +98,10 @@ public class Menu extends javax.swing.JFrame {
 
     private void HistorialHabitaciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialHabitaciónActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        SearchRoomHistory v1 = new SearchRoomHistory();
+        v1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_HistorialHabitaciónActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
