@@ -9,13 +9,6 @@ package proyecto2_carrero_sisiruca_machta;
  *
  * @author acarr
  */
-public class Proyecto2_Carrero_Sisiruca_Machta {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class Habitacion {
     
 }
