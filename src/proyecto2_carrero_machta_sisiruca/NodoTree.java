@@ -8,7 +8,7 @@ package proyecto2_carrero_machta_sisiruca;
  *
  * @author sisir
  */
-class NodoTree {
+public class NodoTree {
     private int clave;
     private Client cliente;
     private NodoTree izquierdo;
