@@ -8,7 +8,7 @@ package proyecto2_carrero_machta_sisiruca;
  *
  * @author sisir
  */
-class BinarySearchTree {
+public class BinarySearchTree {
     private NodoTree raiz;
 
     public BinarySearchTree() {
@@ -19,7 +19,7 @@ class BinarySearchTree {
         raiz = insertClient(raiz, cliente);
     }
 
-    private NodoTree insertClient(NodoTree raiz, Client cliente) {
+    public NodoTree insertClient(NodoTree raiz, Client cliente) {
         if (raiz == null) {
             return new NodoTree(cliente.getRoomNumber(), cliente);
         }
@@ -37,7 +37,7 @@ class BinarySearchTree {
         searchClient(raiz, numHabitacion);
     }
 
-    private void searchClient(NodoTree raiz, int numHabitacion) {
+    public void searchClient(NodoTree raiz, int numHabitacion) {
         if (raiz == null) {
             return;
         }
@@ -51,7 +51,7 @@ class BinarySearchTree {
         }
     }
 
-    private void imprimirClientes(Client cliente) {
+    public void imprimirClientes(Client cliente) {
         System.out.println("Cliente: " + cliente.getFirstName() + " " + cliente.getLastName());
         System.out.println("Cedula: " + cliente.getDni());
         System.out.println("Email: " + cliente.getEmail());

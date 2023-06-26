@@ -8,7 +8,7 @@ package proyecto2_carrero_machta_sisiruca;
  *
  * @author sisir
  */
-class Client {
+public class Client {
     private String dni;
     private String firstName;
     private String lastName;

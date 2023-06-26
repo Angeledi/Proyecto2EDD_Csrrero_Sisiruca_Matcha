@@ -4,6 +4,9 @@
  */
 package Ventanas;
 
+import javax.swing.JOptionPane;
+import proyecto2_carrero_machta_sisiruca.BinarySearchTree;
+
 /**
  *
  * @author sisir
@@ -16,7 +19,7 @@ public class SearchRoomHistory extends javax.swing.JFrame {
     public SearchRoomHistory() {
         initComponents();
         this.setLocationRelativeTo(null); // Se utiliza para centrar la pantalla
-        
+              
     }
 
     /**
@@ -37,7 +40,7 @@ public class SearchRoomHistory extends javax.swing.JFrame {
         BackToMenu = new javax.swing.JButton();
         SearchHistoryRoomClient = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        HistoryClients = new javax.swing.JTextArea();
+        textClientHistory = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
 
         jMenu1.setText("File");
@@ -84,9 +87,9 @@ public class SearchRoomHistory extends javax.swing.JFrame {
         });
         getContentPane().add(SearchHistoryRoomClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, -1, -1));
 
-        HistoryClients.setColumns(20);
-        HistoryClients.setRows(5);
-        jScrollPane1.setViewportView(HistoryClients);
+        textClientHistory.setColumns(20);
+        textClientHistory.setRows(5);
+        jScrollPane1.setViewportView(textClientHistory);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 490, 190));
 
@@ -112,7 +115,13 @@ public class SearchRoomHistory extends javax.swing.JFrame {
     private void SearchHistoryRoomClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchHistoryRoomClientActionPerformed
         // TODO add your handling code here:
         
-        
+        String numHabitacion = InputRoom.getText();
+        if (!"".equals(numHabitacion)){
+            BinarySearchTree bst = new BinarySearchTree();
+    }
+        else{
+            JOptionPane.showMessageDialog(null, "Escribe una palabra");
+        }
     }//GEN-LAST:event_SearchHistoryRoomClientActionPerformed
 
     /**
@@ -152,7 +161,6 @@ public class SearchRoomHistory extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackToMenu;
-    private javax.swing.JTextArea HistoryClients;
     private javax.swing.JTextField InputRoom;
     private javax.swing.JButton SearchHistoryRoomClient;
     private javax.swing.JLabel jLabel1;
@@ -162,5 +170,6 @@ public class SearchRoomHistory extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea textClientHistory;
     // End of variables declaration//GEN-END:variables
 }
