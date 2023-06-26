@@ -4,26 +4,47 @@
  */
 package Ventanas;
 
-import javax.swing.DefaultListModel;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import javax.swing.JOptionPane;
 import proyecto2_carrero_machta_sisiruca.BinarySearchTree;
+import proyecto2_carrero_machta_sisiruca.Client;
 
-
-/**
- *
- * @author sisir
- */
 public class SearchRoomHistory extends javax.swing.JFrame {
+    private BinarySearchTree arbol;
 
-    /**
-     * Creates new form SearchRoomHistory
-     */
     public SearchRoomHistory() {
         initComponents();
-        this.setLocationRelativeTo(null); // Se utiliza para centrar la pantalla
-              
-    }
 
+        // Crear el árbol binario de búsqueda
+        arbol = new BinarySearchTree();
+
+        // Leer el archivo de texto y agregar los clientes al árbol
+           try {
+           InputStream inputStream = SearchRoomHistory.class.getResourceAsStream("RoomHistory.txt");
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+                String linea;
+                
+                while ((linea = br.readLine()) != null) {
+                    String[] datos = linea.split(",");
+                    String dni = datos[0].trim();
+                    String firstName = datos[1].trim();
+                    String lastName = datos[2].trim();
+                    String email = datos[3].trim();
+                    String gender = datos[4].trim();
+                    String checkIn = datos[5].trim();
+                    int roomNumber = Integer.parseInt(datos[6].trim());
+                    
+                    Client cliente = new Client(dni, firstName, lastName, email, gender, checkIn, roomNumber);
+                    arbol.insertar(cliente);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -116,20 +137,17 @@ public class SearchRoomHistory extends javax.swing.JFrame {
 
     private void SearchHistoryRoomClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchHistoryRoomClientActionPerformed
         // TODO add your handling code here:
-        
-        String numHabitacion = InputRoom.getText();
-        if (!"".equals(numHabitacion)){
+        String palabra = InputRoom.getText();
+        if (!"".equals(palabra)){
             try {
-                int roomHistory = Integer.parseInt(numHabitacion);
-                BinarySearchTree bst = new BinarySearchTree();
-
-                
-                
+                int numHabitacion = Integer.parseInt(InputRoom.getText());
+                StringBuilder sb = new StringBuilder();
+                arbol.printHistoryRoom(numHabitacion, sb);
+                textClientHistory.setText(sb.toString());
 
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Error! Recuerde escribir un numero entero!");
-            }
-            
+            }       
     }
         else{
             JOptionPane.showMessageDialog(null, "Escribe un numero de habitacion");

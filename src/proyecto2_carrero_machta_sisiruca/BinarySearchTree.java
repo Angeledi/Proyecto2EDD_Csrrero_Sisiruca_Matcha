@@ -55,20 +55,19 @@ public class BinarySearchTree {
         }
     }
 
-    public void printHistoryRoom(int numHabitacion) {
+    public void printHistoryRoom(int numHabitacion, StringBuilder sb) {
         NodoTree nodoClient = raiz;
         int count = 0;
 
         while (nodoClient != null) {
             if (nodoClient.getCliente().getRoomNumber() == numHabitacion) {
                 count ++;
-                System.out.println("\nCliente n."+count);
-                System.out.println("Nombre: " + nodoClient.getCliente().getFirstName() + " " + nodoClient.getCliente().getLastName());
-                System.out.println("Cedula: " + nodoClient.getCliente().getDni());
-                System.out.println("Email: " + nodoClient.getCliente().getEmail());
-                System.out.println("Genero: "+nodoClient.getCliente().getGender());
-                System.out.println("Fecha de llegada: "+nodoClient.getCliente().getCheckIn());
-                
+                sb.append("\nCliente n.").append(count).append("\n");
+                sb.append("Nombre: ").append(nodoClient.getCliente().getFirstName()).append(" ").append(nodoClient.getCliente().getLastName()).append("\n");
+                sb.append("Cedula: ").append(nodoClient.getCliente().getDni()).append("\n");
+                sb.append("Email: ").append(nodoClient.getCliente().getEmail()).append("\n");
+                sb.append("Genero: ").append(nodoClient.getCliente().getGender()).append("\n");
+                sb.append("Fecha de llegada: ").append(nodoClient.getCliente().getCheckIn()).append("\n");
             }
 
             if (numHabitacion < nodoClient.getCliente().getRoomNumber()) {
