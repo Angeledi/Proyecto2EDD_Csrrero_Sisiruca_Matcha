@@ -17,6 +17,7 @@ public class SearchRoomHistory extends javax.swing.JFrame {
 
     public SearchRoomHistory() {
         initComponents();
+        this.setLocationRelativeTo(null); // Se utiliza para centrar la pantalla
 
         // Crear el árbol binario de búsqueda
         arbol = new BinarySearchTree();
