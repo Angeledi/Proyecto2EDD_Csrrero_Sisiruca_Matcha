@@ -9,25 +9,27 @@ package proyecto2_carrero_machta_sisiruca;
  * @author sisir
  */
 public class NodoTree {
-    private int clave;
     private Client cliente;
     private NodoTree izquierdo;
     private NodoTree derecho;
+    private int altura;
 
-    public NodoTree(int clave, Client cliente) {
-        this.clave = clave;
+    public NodoTree(Client cliente) {
         this.cliente = cliente;
         this.izquierdo = null;
         this.derecho = null;
+        this.altura = 1;
+    }
+    
+    
+    public int getAltura() {
+        return altura;
     }
 
-    public int getClave() {
-        return clave;
+    public void setAltura(int altura) {
+        this.altura = altura;
     }
-
-    public void setClave(int clave) {
-        this.clave = clave;
-    }
+    
 
     public Client getCliente() {
         return cliente;

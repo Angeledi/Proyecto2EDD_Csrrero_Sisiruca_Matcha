@@ -4,8 +4,10 @@
  */
 package Ventanas;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import proyecto2_carrero_machta_sisiruca.BinarySearchTree;
+
 
 /**
  *
@@ -117,10 +119,20 @@ public class SearchRoomHistory extends javax.swing.JFrame {
         
         String numHabitacion = InputRoom.getText();
         if (!"".equals(numHabitacion)){
-            BinarySearchTree bst = new BinarySearchTree();
+            try {
+                int roomHistory = Integer.parseInt(numHabitacion);
+                BinarySearchTree bst = new BinarySearchTree();
+
+                
+                
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Error! Recuerde escribir un numero entero!");
+            }
+            
     }
         else{
-            JOptionPane.showMessageDialog(null, "Escribe una palabra");
+            JOptionPane.showMessageDialog(null, "Escribe un numero de habitacion");
         }
     }//GEN-LAST:event_SearchHistoryRoomClientActionPerformed
 

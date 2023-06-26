@@ -20,8 +20,14 @@ public class Menu {
      */
     public static void main(String[] args) {
         // TODO code application logic here        
+        Menu run = new Menu();
+        run.mostrarHistorial();
+        
+        
+    }
+    public String mostrarHistorial(){
         BinarySearchTree bst = new BinarySearchTree();
-        try {
+           try {
            InputStream inputStream = Menu.class.getResourceAsStream("RoomHistory.txt");
             try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
                 String linea;
@@ -42,11 +48,12 @@ public class Menu {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        
-        int numHabitacion = 32;
+        }        
+           int numHabitacion = 32;
         System.out.println("Clientes que se hospedaron en la habitación " + numHabitacion + ":");
-        bst.buscar(numHabitacion);
+        bst.printHistoryRoom(numHabitacion);
+        return (String) (Object) bst;
     }
-    
 }
+
+

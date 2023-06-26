@@ -4,6 +4,11 @@
  */
 package proyecto2_carrero_machta_sisiruca;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 /**
  *
  * @author sisir
@@ -12,51 +17,65 @@ public class BinarySearchTree {
     private NodoTree raiz;
 
     public BinarySearchTree() {
-        raiz = null;
+        this.raiz = null;
     }
 
-    public void insertar(Client cliente) {
-        raiz = insertClient(raiz, cliente);
-    }
-
-    public NodoTree insertClient(NodoTree raiz, Client cliente) {
-        if (raiz == null) {
-            return new NodoTree(cliente.getRoomNumber(), cliente);
-        }
-
-        if (cliente.getRoomNumber() < raiz.getClave()) {
-            raiz.setIzquierdo(insertClient(raiz.getIzquierdo(), cliente));
-        } else if (cliente.getRoomNumber() > raiz.getClave()) {
-            raiz.setDerecho(insertClient(raiz.getDerecho(), cliente));
-        }
-
+    public NodoTree getRaiz() {
         return raiz;
     }
 
-    public void buscar(int numHabitacion) {
-        searchClient(raiz, numHabitacion);
-    }
+    public void insertar(Client dato) {
+        NodoTree nuevoNodo = new NodoTree(dato);
 
-    public void searchClient(NodoTree raiz, int numHabitacion) {
         if (raiz == null) {
-            return;
-        }
-
-        if (numHabitacion < raiz.getClave()) {
-            searchClient(raiz.getIzquierdo(), numHabitacion);
-        } else if (numHabitacion > raiz.getClave()) {
-            searchClient(raiz.getDerecho(), numHabitacion);
+            raiz = nuevoNodo;
         } else {
-            imprimirClientes(raiz.getCliente());
+            NodoTree nodoActual = raiz;
+            NodoTree padre;
+
+            while (true) {
+                padre = nodoActual;
+
+                if (dato.getRoomNumber() < nodoActual.getCliente().getRoomNumber()) {
+                    nodoActual = nodoActual.getIzquierdo();
+
+                    if (nodoActual == null) {
+                        padre.setIzquierdo(nuevoNodo);
+                        return;
+                    }
+                } else {
+                    nodoActual = nodoActual.getDerecho();
+
+                    if (nodoActual == null) {
+                        padre.setDerecho(nuevoNodo);
+                        return;
+                    }
+                }
+            }
         }
     }
 
-    public void imprimirClientes(Client cliente) {
-        System.out.println("Cliente: " + cliente.getFirstName() + " " + cliente.getLastName());
-        System.out.println("Cedula: " + cliente.getDni());
-        System.out.println("Email: " + cliente.getEmail());
-        System.out.println("Género: " + cliente.getGender());
-        System.out.println("Fecha de entrada: " + cliente.getCheckIn());
-        System.out.println();
+    public void printHistoryRoom(int numHabitacion) {
+        NodoTree nodoClient = raiz;
+        int count = 0;
+
+        while (nodoClient != null) {
+            if (nodoClient.getCliente().getRoomNumber() == numHabitacion) {
+                count ++;
+                System.out.println("\nCliente n."+count);
+                System.out.println("Nombre: " + nodoClient.getCliente().getFirstName() + " " + nodoClient.getCliente().getLastName());
+                System.out.println("Cedula: " + nodoClient.getCliente().getDni());
+                System.out.println("Email: " + nodoClient.getCliente().getEmail());
+                System.out.println("Genero: "+nodoClient.getCliente().getGender());
+                System.out.println("Fecha de llegada: "+nodoClient.getCliente().getCheckIn());
+                
+            }
+
+            if (numHabitacion < nodoClient.getCliente().getRoomNumber()) {
+                nodoClient = nodoClient.getIzquierdo();
+            } else {
+                nodoClient = nodoClient.getDerecho();
+            }
+        }
     }
 }
