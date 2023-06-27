@@ -1,11 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Ventanas;
 
 import proyecto2_carrero_sisiruca_machta.ABB_Reserva;
+import proyecto2_carrero_sisiruca_machta.BinarySearchTree;
 import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
 
 /**
@@ -13,10 +13,9 @@ import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
  * @author sisir
  */
 public class Menu extends javax.swing.JFrame {
-    
     private HashTableEstadoActual Estado;
     private ABB_Reserva Reserva;
-
+    private BinarySearchTree Historico;
     /**
      * Creates new form Menu
      */
@@ -24,6 +23,7 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         this.Estado = null;
         this.Reserva = null;
+        this.Historico = null;
         this.setLocationRelativeTo(null); // Se utiliza para centrar la pantalla
     }
 
@@ -36,20 +36,16 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         Logo = new javax.swing.JPanel();
-        Fondo = new javax.swing.JLabel();
         RegistrarUsuario = new javax.swing.JButton();
         BuscarReservación = new javax.swing.JButton();
         HistorialHabitación = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        CargarArchivo = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout LogoLayout = new javax.swing.GroupLayout(Logo);
         Logo.setLayout(LogoLayout);
@@ -62,13 +58,10 @@ public class Menu extends javax.swing.JFrame {
             .addGap(0, 170, Short.MAX_VALUE)
         );
 
-        jPanel1.add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 240, 170));
-
-        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
-        jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 380));
+        getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 240, 170));
 
         RegistrarUsuario.setText("Registrar Usuario");
-        jPanel1.add(RegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, -1, -1));
+        getContentPane().add(RegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
 
         BuscarReservación.setText("Buscar Reservación");
         BuscarReservación.addActionListener(new java.awt.event.ActionListener() {
@@ -76,15 +69,15 @@ public class Menu extends javax.swing.JFrame {
                 BuscarReservaciónActionPerformed(evt);
             }
         });
-        jPanel1.add(BuscarReservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
+        getContentPane().add(BuscarReservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
 
-        HistorialHabitación.setText("Historial de Habitación");
+        HistorialHabitación.setText(" Historial de Habitación  ");
         HistorialHabitación.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HistorialHabitaciónActionPerformed(evt);
             }
         });
-        jPanel1.add(HistorialHabitación, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, -1, -1));
+        getContentPane().add(HistorialHabitación, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
 
         jButton4.setText("Comenzar Estadía");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +85,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 280, -1, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
 
         jButton5.setText("Terminar Estadía");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -100,46 +93,13 @@ public class Menu extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, -1, -1));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, -1, -1));
 
-        CargarArchivo.setText("Cargar Archivo");
-        CargarArchivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CargarArchivoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(CargarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, -1, -1));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, -1, -1));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 390));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void CargarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarArchivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CargarArchivoActionPerformed
 
     private void BuscarReservaciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarReservaciónActionPerformed
         // TODO add your handling code here:
@@ -147,15 +107,19 @@ public class Menu extends javax.swing.JFrame {
 
     private void HistorialHabitaciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialHabitaciónActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        SearchRoomHistory windowHistoric = new SearchRoomHistory(Historico);
+        windowHistoric.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_HistorialHabitaciónActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,28 +158,28 @@ public class Menu extends javax.swing.JFrame {
             }
         });
     }
+    public void initDatos(){
+    HashTableEstadoActual e = new HashTableEstadoActual();
+    e.initHashTableEstado();
+    this.Estado = e;
+    
+    ABB_Reserva r = new ABB_Reserva();
+    r.initABB_Reserva();
+    this.Reserva = r;
+    
+    BinarySearchTree h = new BinarySearchTree();
+    h.initABB_Historial();
+    this.Historico = h;
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BuscarReservación;
-    private javax.swing.JButton CargarArchivo;
     private javax.swing.JLabel Fondo;
     private javax.swing.JButton HistorialHabitación;
     private static javax.swing.JPanel Logo;
     private javax.swing.JButton RegistrarUsuario;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
-
-    public void initDatos() {
-        HashTableEstadoActual e = new HashTableEstadoActual();
-        e.initHashTableEstado();
-        this.Estado = e;
-        
-        ABB_Reserva r = new ABB_Reserva();
-        r.initABB_Reserva();
-        this.Reserva = r;
-        
-    }
 }

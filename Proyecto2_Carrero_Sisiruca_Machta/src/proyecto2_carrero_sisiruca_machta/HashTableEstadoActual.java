@@ -100,7 +100,7 @@ public class HashTableEstadoActual {
         HashTableEstadoActual aux = new HashTableEstadoActual(); // revisar 
         String line;
         String clientes_txt = "";
-        String path = "test\\Estado.txt";
+        String path = "test\\estado.txt";
         File file = new File(path);
 
         try {
