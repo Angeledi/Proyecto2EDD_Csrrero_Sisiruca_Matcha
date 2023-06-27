@@ -18,6 +18,7 @@ public class Estado {
     private String celular;
     private int[] llegada;
     private Boolean checkedIn;
+    private Boolean checkedOut;
     private Estado next;
     
     public Estado(int num_habitacion ,String nombre, String apellido, String email, String gender, String celular, int[] llegada, Boolean checkedIn){
@@ -29,6 +30,7 @@ public class Estado {
         this.llegada = llegada;
         this.num_habitacion = num_habitacion;
         this.checkedIn = checkedIn;
+        this.checkedOut = false;
     }
 
     public int getNum_habitacion() {
@@ -91,8 +93,16 @@ public class Estado {
        this.checkedIn = true;
     }
     
+    public void checkOut(){
+       this.checkedOut = true;
+    }
+    
     public Boolean getCheckedIn(){
         return checkedIn;
+    }
+    
+    public Boolean getCheckedOut(){
+        return checkedOut;
     }
 
     public Estado getNext() {

@@ -160,7 +160,6 @@ public class HashTableEstadoActual {
     }
     
     public void insertEstado(Estado cliente, int index) {
-        
         if (this.array_estado[index] == null) {
             this.array_estado[index] = cliente;
         } else {
