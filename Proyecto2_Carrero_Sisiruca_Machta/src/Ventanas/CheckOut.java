@@ -5,22 +5,23 @@
 package Ventanas;
 
 import javax.swing.JOptionPane;
+import proyecto2_carrero_sisiruca_machta.Historic;
 import proyecto2_carrero_sisiruca_machta.Estado;
 import proyecto2_carrero_sisiruca_machta.ABB_Reserva;
 import proyecto2_carrero_sisiruca_machta.BinarySearchTree;
 import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
 
-public class CheckIn extends javax.swing.JFrame {
+public class CheckOut extends javax.swing.JFrame {
     private HashTableEstadoActual Estado;
     private ABB_Reserva Reserva;
     private BinarySearchTree Historico;
     
-    public CheckIn() {
+    public CheckOut() {
         initComponents();
         setLocationRelativeTo(null);
     }
     
-    public CheckIn(HashTableEstadoActual Estado, ABB_Reserva Reserva, BinarySearchTree Historico) {
+    public CheckOut(HashTableEstadoActual Estado, ABB_Reserva Reserva, BinarySearchTree Historico) {
         initComponents();
         this.Estado = Estado;
         this.Reserva = Reserva;
@@ -58,7 +59,7 @@ public class CheckIn extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(222, 222, 222));
         jLabel1.setFont(new java.awt.Font("Elephant", 0, 19)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Check In");
+        jLabel1.setText("Check Out");
         jLabel1.setToolTipText("");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 450, 50));
 
@@ -131,12 +132,11 @@ public class CheckIn extends javax.swing.JFrame {
         Estado e = Estado.getEstado(nombre, apellido);
         if(e == null){
             JOptionPane.showMessageDialog(null, "Este huésped no se encuentra registrado!");
-        } else if(e.getCheckedIn() == false && e.getCheckedOut() == false) {
-            e.checkIn();
-            JOptionPane.showMessageDialog(null, "Este huésped hizo check in en la habitación " + e.getNum_habitacion());
         } else if(e.getCheckedIn() == true && e.getCheckedOut() == false) {
-            JOptionPane.showMessageDialog(null, "Este cliente ya hizo su check in!");
-        }  else {
+            e.checkOut();
+            Historico.insertar(new Historic("No disponible", e.getNombre(), e.getApellido(), e.getEmail(), e.getGender(), "No disponible", e.getNum_habitacion()));
+            JOptionPane.showMessageDialog(null, "La habitación " + e.getNum_habitacion()+ " ahora se encuentra disponible");
+        } else {
             JOptionPane.showMessageDialog(null, "Este huésped no se encuentra registrado!");
         }
     }//GEN-LAST:event_SearchHistoryRoomClientActionPerformed
@@ -166,14 +166,18 @@ public class CheckIn extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckOut.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckOut.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckOut.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckOut.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -182,7 +186,7 @@ public class CheckIn extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CheckIn().setVisible(true);
+                new CheckOut().setVisible(true);
             }
         });
     }
