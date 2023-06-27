@@ -136,11 +136,10 @@ public class CheckIn extends javax.swing.JFrame {
 
         Estado e = Estado.getEstado(nombre, apellido);
         if(e == null){
-             JOptionPane.showMessageDialog(null, "Este huésped no se encuentra registrado!");
+            JOptionPane.showMessageDialog(null, "Este huésped no se encuentra registrado!");
         } else if(e.getCheckedIn() == false) {
-            System.out.println(e.getNum_habitacion());
-            System.out.println(e.getNombre());
-            System.out.println(e.getCheckedIn());
+            e.checkIn();
+            JOptionPane.showMessageDialog(null, "Este huésped hizo check in en la habitación " + e.getNum_habitacion());
         } else {
             JOptionPane.showMessageDialog(null, "Este cliente ya hizo su check in!");
         }   
