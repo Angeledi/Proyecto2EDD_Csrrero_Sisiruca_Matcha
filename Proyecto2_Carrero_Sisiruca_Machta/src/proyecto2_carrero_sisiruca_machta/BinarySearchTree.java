@@ -65,13 +65,17 @@ public class BinarySearchTree {
 
         while (nodoClient != null) {
             if (nodoClient.getCliente().getRoomNumber() == numHabitacion) {
+                Historic pointer = nodoClient.getCliente();
+                while (pointer != null){
                 count ++;
                 str += "\nCliente n."+count+"\n";
-                str += "Nombre: "+nodoClient.getCliente().getFirstName()+" "+ nodoClient.getCliente().getLastName()+"\n";
-                str += "Cedula: "+nodoClient.getCliente().getDni()+"\n";
-                str += "Email: " + nodoClient.getCliente().getEmail() +"\n";
-                str += "Genero: " + nodoClient.getCliente().getGender()+"\n";
-                str += "Fecha de llegada: "+ nodoClient.getCliente().getCheckIn()+"\n";
+                str += "Nombre: "+pointer.getFirstName()+" "+ pointer.getLastName()+"\n";
+                str += "Cedula: "+pointer.getDni()+"\n";
+                str += "Email: " + pointer.getEmail() +"\n";
+                str += "Genero: " + pointer.getGender()+"\n";
+                str += "Fecha de llegada: "+ pointer.getCheckIn()+"\n";
+                pointer = (Historic) pointer.getNext();
+                }
             }
 
             if (numHabitacion < nodoClient.getCliente().getRoomNumber()) {
@@ -130,10 +134,13 @@ public class BinarySearchTree {
                     Historic cliente = new Historic(dni, firstName, lastName, email, gender, checkIn, roomNumber);
                     if (buscar(roomNumber) != null){
                         Historic C_anterior = buscar(roomNumber);
+                        while (C_anterior.getNext() != null){
+                            C_anterior = (Historic) C_anterior.getNext();
+                        }
                         C_anterior.setNext(cliente);
                     } else {
                         agregar(cliente);}
-                    System.out.println(dni);
+                    
          
                    
 

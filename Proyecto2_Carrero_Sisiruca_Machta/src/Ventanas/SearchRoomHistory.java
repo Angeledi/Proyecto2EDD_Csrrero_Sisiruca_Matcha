@@ -19,6 +19,7 @@ public class SearchRoomHistory extends javax.swing.JFrame {
     public SearchRoomHistory(BinarySearchTree arbol) {
         initComponents();
         this.arbol = arbol;
+        setLocationRelativeTo(null);
 
         // Crear el árbol binario de búsqueda
        // arbol = new BinarySearchTree();
