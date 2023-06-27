@@ -9,16 +9,27 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import javax.swing.JOptionPane;
+import proyecto2_carrero_sisiruca_machta.ABB_Reserva;
 import proyecto2_carrero_sisiruca_machta.BinarySearchTree;
+import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
 import proyecto2_carrero_sisiruca_machta.Historic;
 
 
 public class SearchRoomHistory extends javax.swing.JFrame {
-    static BinarySearchTree arbol;
-
-    public SearchRoomHistory(BinarySearchTree arbol) {
+    private HashTableEstadoActual Estado;
+    private ABB_Reserva Reserva;
+    private BinarySearchTree Historico;
+    
+    public SearchRoomHistory() {
         initComponents();
-        this.arbol = arbol;
+        setLocationRelativeTo(null);
+    }
+      
+    public SearchRoomHistory(HashTableEstadoActual Estado, ABB_Reserva Reserva, BinarySearchTree Historico) {
+        initComponents();
+        this.Estado = Estado;
+        this.Reserva = Reserva;
+        this.Historico = Historico;
         setLocationRelativeTo(null);
 
         // Crear el árbol binario de búsqueda
@@ -134,7 +145,7 @@ public class SearchRoomHistory extends javax.swing.JFrame {
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        Menu menu = new Menu();
+        Menu menu = new Menu(Estado, Reserva, Historico);
         menu.setVisible(true);
         this.dispose();
 
@@ -146,7 +157,7 @@ public class SearchRoomHistory extends javax.swing.JFrame {
         if (!"".equals(palabra)){
             try {
                 int numHabitacion = Integer.parseInt(InputRoom.getText());
-                String str = arbol.printHistoryRoom(numHabitacion);
+                String str = Historico.printHistoryRoom(numHabitacion);
                 textClientHistory.setText(str);
 
             } catch (NumberFormatException e) {
@@ -159,11 +170,11 @@ public class SearchRoomHistory extends javax.swing.JFrame {
     }//GEN-LAST:event_SearchHistoryRoomClientActionPerformed
 
     public BinarySearchTree getArbol() {
-        return arbol;
+        return Historico;
     }
 
     public void setArbol(BinarySearchTree arbol) {
-        this.arbol = arbol;
+        this.Historico = arbol;
     }
     
     /**
@@ -197,7 +208,7 @@ public class SearchRoomHistory extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SearchRoomHistory(arbol).setVisible(true);
+                new SearchRoomHistory().setVisible(true);
             }
         });
     }

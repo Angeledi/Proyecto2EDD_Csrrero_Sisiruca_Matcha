@@ -26,6 +26,14 @@ public class Menu extends javax.swing.JFrame {
         this.Historico = null;
         this.setLocationRelativeTo(null); // Se utiliza para centrar la pantalla
     }
+    
+    public Menu(HashTableEstadoActual Estado, ABB_Reserva Reserva, BinarySearchTree Historico) {
+        initComponents();
+        this.Estado = Estado;
+        this.Reserva = Reserva;
+        this.Historico = Historico;
+        setLocationRelativeTo(null);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -98,17 +106,23 @@ public class Menu extends javax.swing.JFrame {
     private void HistorialHabitaciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialHabitaciónActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        SearchRoomHistory windowHistoric = new SearchRoomHistory(Historico);
+        SearchRoomHistory windowHistoric = new SearchRoomHistory(Estado, Reserva, Historico);
         windowHistoric.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_HistorialHabitaciónActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        CheckIn windowCheckIn = new CheckIn(Estado, Reserva, Historico);
+        windowCheckIn.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        CheckOut windowCheckOut = new CheckOut(Estado, Reserva, Historico);
+        windowCheckOut.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
