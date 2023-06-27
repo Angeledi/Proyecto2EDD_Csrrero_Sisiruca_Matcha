@@ -86,6 +86,10 @@ public class Estado {
     public void setLlegada(int[] llegada) {
         this.llegada = llegada;
     }
+    
+    public Boolean getCheckedIn(){
+        return checkedIn;
+    }
 
     public Estado getNext() {
         return next;
