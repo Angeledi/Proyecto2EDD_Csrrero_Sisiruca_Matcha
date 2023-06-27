@@ -36,29 +36,16 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Logo = new javax.swing.JPanel();
         RegistrarUsuario = new javax.swing.JButton();
         BuscarReservación = new javax.swing.JButton();
         HistorialHabitación = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        javax.swing.GroupLayout LogoLayout = new javax.swing.GroupLayout(Logo);
-        Logo.setLayout(LogoLayout);
-        LogoLayout.setHorizontalGroup(
-            LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 240, Short.MAX_VALUE)
-        );
-        LogoLayout.setVerticalGroup(
-            LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 170, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 240, 170));
 
         RegistrarUsuario.setText("Registrar Usuario");
         getContentPane().add(RegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
@@ -77,7 +64,7 @@ public class Menu extends javax.swing.JFrame {
                 HistorialHabitaciónActionPerformed(evt);
             }
         });
-        getContentPane().add(HistorialHabitación, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
+        getContentPane().add(HistorialHabitación, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, -1, -1));
 
         jButton4.setText("Comenzar Estadía");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -94,6 +81,9 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 290, 190));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 390));
@@ -153,8 +143,6 @@ public class Menu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Menu().setVisible(true);
-                Imagen im = new Imagen(Logo);
-                Logo.add(im).repaint();
             }
         });
     }
@@ -177,9 +165,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton BuscarReservación;
     private javax.swing.JLabel Fondo;
     private javax.swing.JButton HistorialHabitación;
-    private static javax.swing.JPanel Logo;
     private javax.swing.JButton RegistrarUsuario;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
