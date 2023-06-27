@@ -87,6 +87,10 @@ public class Estado {
         this.llegada = llegada;
     }
     
+    public void checkIn(){
+       this.checkedIn = true;
+    }
+    
     public Boolean getCheckedIn(){
         return checkedIn;
     }
