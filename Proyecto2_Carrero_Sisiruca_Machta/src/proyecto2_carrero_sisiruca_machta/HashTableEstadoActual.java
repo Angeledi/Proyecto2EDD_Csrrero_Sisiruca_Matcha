@@ -113,15 +113,16 @@ public class HashTableEstadoActual {
             }
             if (!"".equals(clientes_txt)) {
                 String[] clientes_split = clientes_txt.split("\n");
-
+                
                 for (int i = 1; i < clientes_split.length; i++) {
                         String[] Cliente = clientes_split[i].split(",");
-                  
-                        int num_habitacion;
+                        
+                        Boolean checkedIn;
+                        int num_habitacion = i;
                         if ("".equals(Cliente[0])){
-                           num_habitacion = -1;
-                        } else {num_habitacion = Integer.parseInt(Cliente[0]);}
-          
+                           checkedIn = false;
+                        } else { checkedIn = true; }                
+                        
                         String primer_nombre = Cliente[1];
                         String apellido = Cliente[2];
                         String email = Cliente[3];
@@ -130,7 +131,7 @@ public class HashTableEstadoActual {
                         String[] llegada_aux = Cliente[6].split("/");
                         int[] llegada = new int[]{Integer.parseInt(llegada_aux[0]),Integer.parseInt(llegada_aux[1]),Integer.parseInt(llegada_aux[2])};
          
-                        Estado nuevo_cliente = new Estado(num_habitacion, primer_nombre, apellido, email, genero, celular, llegada);
+                        Estado nuevo_cliente = new Estado(num_habitacion, primer_nombre, apellido, email, genero, celular, llegada, checkedIn);
                         int index1 = hashFunction(nuevo_cliente);
                        // nuevo_cliente.print();
     

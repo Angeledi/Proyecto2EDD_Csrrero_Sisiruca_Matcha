@@ -17,9 +17,10 @@ public class Estado {
     private String gender;
     private String celular;
     private int[] llegada;
+    private Boolean checkedIn;
     private Estado next;
     
-    public Estado(int num_habitacion ,String nombre, String apellido, String email, String gender, String celular, int[] llegada){
+    public Estado(int num_habitacion ,String nombre, String apellido, String email, String gender, String celular, int[] llegada, Boolean checkedIn){
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -27,6 +28,7 @@ public class Estado {
         this.celular = celular;
         this.llegada = llegada;
         this.num_habitacion = num_habitacion;
+        this.checkedIn = checkedIn;
     }
 
     public int getNum_habitacion() {
