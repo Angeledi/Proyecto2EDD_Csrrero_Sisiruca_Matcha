@@ -9,16 +9,27 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import javax.swing.JOptionPane;
+import proyecto2_carrero_sisiruca_machta.ABB_Reserva;
 import proyecto2_carrero_sisiruca_machta.BinarySearchTree;
+import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
 import proyecto2_carrero_sisiruca_machta.Historic;
 
 
 public class CheckIn extends javax.swing.JFrame {
-    static BinarySearchTree Historico;
-
-    public CheckIn(BinarySearchTree arbol) {
+    private HashTableEstadoActual Estado;
+    private ABB_Reserva Reserva;
+    private BinarySearchTree Historico;
+    
+    public CheckIn() {
         initComponents();
-        this.Historico = arbol;
+        setLocationRelativeTo(null);
+    }
+    
+    public CheckIn(HashTableEstadoActual Estado, ABB_Reserva Reserva, BinarySearchTree Historico) {
+        initComponents();
+        this.Estado = Estado;
+        this.Reserva = Reserva;
+        this.Historico = Historico;
         setLocationRelativeTo(null);
     }
     /**
@@ -97,7 +108,7 @@ public class CheckIn extends javax.swing.JFrame {
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        Menu menu = new Menu(Historico);
+        Menu menu = new Menu(Estado, Reserva, Historico);
         menu.setVisible(true);
         this.dispose();
 
@@ -161,7 +172,7 @@ public class CheckIn extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CheckIn(Historico).setVisible(true);
+                new CheckIn().setVisible(true);
             }
         });
     }
