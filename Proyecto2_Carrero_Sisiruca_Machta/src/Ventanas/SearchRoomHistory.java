@@ -4,49 +4,35 @@
  */
 package Ventanas;
 
+import static Ventanas.Menu.Estado;
+import static Ventanas.Menu.Historico;
+import static Ventanas.Menu.Reserva;
+import static Ventanas.Menu.list_habitaciones;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import javax.swing.JOptionPane;
+import proyecto2_carrero_sisiruca_machta.ABB_Reserva;
 import proyecto2_carrero_sisiruca_machta.BinarySearchTree;
+import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
 import proyecto2_carrero_sisiruca_machta.Historic;
+import proyecto2_carrero_sisiruca_machta.ListaHabitacion;
 
 
 public class SearchRoomHistory extends javax.swing.JFrame {
-    static BinarySearchTree arbol;
-
-    public SearchRoomHistory(BinarySearchTree arbol) {
+    static BinarySearchTree Historico;
+    static HashTableEstadoActual Estado;
+    static ABB_Reserva Reserva;
+    static ListaHabitacion list_habitaciones;
+    public SearchRoomHistory(HashTableEstadoActual Estado, ABB_Reserva Reserva, BinarySearchTree Historico, ListaHabitacion list_habitaciones) {
         initComponents();
-        this.arbol = arbol;
+        this.Estado = Estado;
+        this.Reserva = Reserva;
+        this.Historico = Historico;
+        this.list_habitaciones = list_habitaciones;
         setLocationRelativeTo(null);
 
-        // Crear el árbol binario de búsqueda
-       // arbol = new BinarySearchTree();
-
-        // Leer el archivo de texto y agregar los clientes al árbol
-//           try {
-//           InputStream inputStream = SearchRoomHistory.class.getResourceAsStream("test\\habitaciones.txt");
-//            try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
-//                String linea;
-//                
-//                while ((linea = br.readLine()) != null) {
-//                    String[] datos = linea.split(",");
-//                    String dni = datos[0].trim();
-//                    String firstName = datos[1].trim();
-//                    String lastName = datos[2].trim();
-//                    String email = datos[3].trim();
-//                    String gender = datos[4].trim();
-//                    String checkIn = datos[5].trim();
-//                    int roomNumber = Integer.parseInt(datos[6].trim());
-//                    
-//                    Historic cliente = new Historic(dni, firstName, lastName, email, gender, checkIn, roomNumber);
-//                    arbol.insertar(cliente);
-//                }
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -132,7 +118,8 @@ public class SearchRoomHistory extends javax.swing.JFrame {
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        Menu menu = new Menu();
+        Menu menu = new Menu(Estado, Reserva, Historico, list_habitaciones);
+       // menu.setHistorico(Historico);
         menu.setVisible(true);
         this.dispose();
 
@@ -144,7 +131,7 @@ public class SearchRoomHistory extends javax.swing.JFrame {
         if (!"".equals(palabra)){
             try {
                 int numHabitacion = Integer.parseInt(InputRoom.getText());
-                String str = arbol.printHistoryRoom(numHabitacion);
+                String str = Historico.printHistoryRoom(numHabitacion);
                 textClientHistory.setText(str);
 
             } catch (NumberFormatException e) {
@@ -156,12 +143,12 @@ public class SearchRoomHistory extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SearchHistoryRoomClientActionPerformed
 
-    public BinarySearchTree getArbol() {
-        return arbol;
+    public BinarySearchTree getHistorico() {
+        return Historico;
     }
 
-    public void setArbol(BinarySearchTree arbol) {
-        this.arbol = arbol;
+    public void setHistorico(BinarySearchTree Historico) {
+        this.Historico = Historico;
     }
     
     /**
@@ -195,7 +182,7 @@ public class SearchRoomHistory extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SearchRoomHistory(arbol).setVisible(true);
+                new SearchRoomHistory(Estado, Reserva, Historico, list_habitaciones).setVisible(true);
             }
         });
     }

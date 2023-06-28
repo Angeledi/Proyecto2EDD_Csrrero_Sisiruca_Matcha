@@ -182,5 +182,21 @@ public class HashTableEstadoActual {
         }
         return null;
     }
+    
+    public Estado borrar_Estado(String nombre, String apellido) {
+    int index = hashFunctionString(nombre+apellido);
+        Estado pointer = array_estado[index];
+        
+        while (pointer != null) {
+            Estado pointer2 = pointer.getNext();
+            if (pointer2.getNombre().equals(nombre) && pointer2.getApellido().equals(apellido)) {
+                pointer.setNext(pointer2.getNext());
+                pointer2.setNext(null);
+                return pointer2;
+            }
+            pointer = pointer.getNext();
+        }
+        return null;
+    }
      
 }

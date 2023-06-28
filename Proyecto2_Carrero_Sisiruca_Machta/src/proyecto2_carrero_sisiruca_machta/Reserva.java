@@ -115,7 +115,8 @@ public class Reserva {
         this.next = next;
     }
     
-    public void printCliente(){
-        System.out.println("Nombre: "+nombre+" "+apellido+", Email: "+email+", Genero: "+gender+", Habitacion: "+ tipo_habitacion+", Celular: "+celular+", Llegada: "+llegada+", Salida: "+salida);
+    public String printCliente(){
+        String str = ("Nombre: "+nombre+" "+apellido+", Email: "+email+", Genero: "+gender+", Habitacion: "+ tipo_habitacion+", Celular: "+celular+", Llegada: "+llegada[0]+"/"+llegada[1]+"/"+llegada[2]+", Salida: "+salida[0]+"/"+salida[1]+"/"+salida[2]);
+        return str;
     }
 }

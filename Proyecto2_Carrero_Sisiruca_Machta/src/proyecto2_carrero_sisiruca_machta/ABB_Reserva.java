@@ -102,6 +102,8 @@ public class ABB_Reserva {
             preOrden(raiz.getDerecho());
         }
     }
+    
+    public void preOrden_to_string(){}
 
     
     public void agregar(Reserva reservacion) {
@@ -184,6 +186,65 @@ public class ABB_Reserva {
         
         return nuevoNodo;
     }
+    
+    public void eliminar(int cedula) {
+    raiz = eliminarRec(raiz, cedula);
+    }
+    
+    private Nodo eliminarRec(Nodo nodo, int cedula) {
+    if (nodo == null) {
+        return null;
+    } else if (cedula < nodo.getReserva().getCedula()) {
+        nodo.setIzquierdo(eliminarRec(nodo.getIzquierdo(), cedula));
+    } else if (cedula > nodo.getReserva().getCedula()) {
+        nodo.setDerecho(eliminarRec(nodo.getDerecho(), cedula));
+    } else {
+        if (nodo.getIzquierdo() == null && nodo.getDerecho() == null) { // Caso 1: el nodo no tiene hijos
+            return null;
+        } else if (nodo.getIzquierdo() == null || nodo.getDerecho() == null) { // Caso 2: el nodo tiene un hijo
+            Nodo nuevoNodo = (nodo.getIzquierdo() != null) ? nodo.getIzquierdo() : nodo.getDerecho();
+            nodo.setReserva(nuevoNodo.getReserva());
+            nodo.setIzquierdo(nuevoNodo.getIzquierdo());
+            nodo.setDerecho(nuevoNodo.getDerecho());
+        } else { // Caso 3: el nodo tiene dos hijos
+            Nodo sucesor = sucesorInmediato(nodo.getDerecho());
+            nodo.setReserva(sucesor.getReserva());
+            nodo.setDerecho(eliminarRec(nodo.getDerecho(), sucesor.getReserva().getCedula()));
+        }
+    }
+
+    if (nodo != null) {
+        int alturaIzquierdo = (nodo.getIzquierdo() != null) ? nodo.getIzquierdo().getAltura() : 0;
+        int alturaDerecho = (nodo.getDerecho() != null) ? nodo.getDerecho().getAltura() : 0;
+        int factorBalance = alturaIzquierdo - alturaDerecho;
+
+        if (factorBalance > 1) { // Desbalance hacia la izquierda
+            if (nodo.getIzquierdo().getDerecho() != null && (nodo.getIzquierdo().getDerecho()).getAltura() > (nodo.getIzquierdo().getIzquierdo() != null ? nodo.getIzquierdo().getIzquierdo().getAltura() : 0)) {
+                nodo.setIzquierdo(rotacionIzquierda(nodo.getIzquierdo()));
+            }
+            nodo = rotacionDerecha(nodo);
+        } else if (factorBalance < -1) { // Desbalance hacia la derecha
+            if (nodo.getDerecho().getIzquierdo() != null && (nodo.getDerecho().getIzquierdo()).getAltura() > (nodo.getDerecho().getDerecho() != null ? nodo.getDerecho().getDerecho().getAltura() : 0)) {
+                nodo.setDerecho(rotacionDerecha(nodo.getDerecho().getDerecho()));
+            }
+            nodo = rotacionIzquierda(nodo);
+        }
+
+        // Actualizar altura
+        alturaIzquierdo = (nodo.getIzquierdo() != null) ? nodo.getIzquierdo().getAltura() : 0;
+        alturaDerecho = (nodo.getDerecho() != null) ? nodo.getDerecho().getAltura() : 0;
+        nodo.setAltura(Math.max(alturaIzquierdo, alturaDerecho) + 1);
+    }
+
+    return nodo;
+}
+
+private Nodo sucesorInmediato(Nodo nodo) {
+    while (nodo.getIzquierdo() != null) {
+        nodo = nodo.getIzquierdo();
+    }
+    return nodo;
+}
 
 
 //Cabe destacar que esta implementación utiliza un enfoque de inserción recursivo que mantiene el árbol balanceado mediante las rotaciones AVL, lo que garantiza que la búsqueda tenga una complejidad temporal de O(log N). Además, el método `buscar` también utiliza una búsqueda recursiva que recorre el árbol de forma eficiente para encontrar la reserva correspondiente a la cédula del cliente.

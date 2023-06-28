@@ -26,6 +26,10 @@ public class Nodo {
         return reservacion;
     }
     
+    public Reserva setReserva(Reserva nueva) {
+        return this.reservacion = nueva;
+    }
+    
     public Nodo getIzquierdo() {
         return izquierdo;
     }

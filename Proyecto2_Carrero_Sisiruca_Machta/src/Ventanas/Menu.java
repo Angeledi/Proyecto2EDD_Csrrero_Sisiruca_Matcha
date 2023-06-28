@@ -7,23 +7,27 @@ package Ventanas;
 import proyecto2_carrero_sisiruca_machta.ABB_Reserva;
 import proyecto2_carrero_sisiruca_machta.BinarySearchTree;
 import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
+import proyecto2_carrero_sisiruca_machta.ListaHabitacion;
 
 /**
  *
  * @author sisir
  */
 public class Menu extends javax.swing.JFrame {
-    private HashTableEstadoActual Estado;
-    private ABB_Reserva Reserva;
-    private BinarySearchTree Historico;
+    static HashTableEstadoActual Estado;
+    static ABB_Reserva Reserva;
+    static BinarySearchTree Historico;
+    static ListaHabitacion list_habitaciones;
     /**
      * Creates new form Menu
      */
-    public Menu() {
+    public Menu(HashTableEstadoActual Estado, ABB_Reserva Reserva, BinarySearchTree Historico, ListaHabitacion list_habitaciones) {
         initComponents();
-        this.Estado = null;
-        this.Reserva = null;
-        this.Historico = null;
+        this.Estado = Estado;
+        this.Reserva = Reserva;
+        this.Historico = Historico;
+        this.list_habitaciones = list_habitaciones;
+
         this.setLocationRelativeTo(null); // Se utiliza para centrar la pantalla
     }
 
@@ -61,7 +65,12 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 240, 170));
 
         RegistrarUsuario.setText("Registrar Usuario");
-        getContentPane().add(RegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
+        RegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarUsuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(RegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
         BuscarReservación.setText("Buscar Reservación");
         BuscarReservación.addActionListener(new java.awt.event.ActionListener() {
@@ -69,7 +78,7 @@ public class Menu extends javax.swing.JFrame {
                 BuscarReservaciónActionPerformed(evt);
             }
         });
-        getContentPane().add(BuscarReservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
+        getContentPane().add(BuscarReservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 140, -1));
 
         HistorialHabitación.setText(" Historial de Habitación  ");
         HistorialHabitación.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +86,7 @@ public class Menu extends javax.swing.JFrame {
                 HistorialHabitaciónActionPerformed(evt);
             }
         });
-        getContentPane().add(HistorialHabitación, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
+        getContentPane().add(HistorialHabitación, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 160, -1));
 
         jButton4.setText("Comenzar Estadía");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +117,7 @@ public class Menu extends javax.swing.JFrame {
     private void HistorialHabitaciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialHabitaciónActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        SearchRoomHistory windowHistoric = new SearchRoomHistory(Historico);
+        SearchRoomHistory windowHistoric = new SearchRoomHistory(Estado, Reserva, Historico, list_habitaciones);
         windowHistoric.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_HistorialHabitaciónActionPerformed
@@ -121,6 +130,39 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void RegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarUsuarioActionPerformed
+        this.setVisible(false);
+        MenuEstado windowEstado = new MenuEstado(Estado, Reserva, Historico, list_habitaciones);
+        windowEstado.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_RegistrarUsuarioActionPerformed
+
+    public HashTableEstadoActual getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(HashTableEstadoActual Estado) {
+        this.Estado = Estado;
+    }
+
+    public ABB_Reserva getReserva() {
+        return Reserva;
+    }
+
+    public void setReserva(ABB_Reserva Reserva) {
+        this.Reserva = Reserva;
+    }
+
+    public BinarySearchTree getHistorico() {
+        return Historico;
+    }
+
+    public void setHistorico(BinarySearchTree Historico) {
+        this.Historico = Historico;
+    }
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -152,7 +194,7 @@ public class Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+                new Menu(Estado, Reserva, Historico, list_habitaciones).setVisible(true);
                 Imagen im = new Imagen(Logo);
                 Logo.add(im).repaint();
             }
@@ -171,6 +213,10 @@ public class Menu extends javax.swing.JFrame {
     h.initABB_Historial();
     this.Historico = h;
     
+    ListaHabitacion l = new ListaHabitacion();
+    l.initlistaHabitaciones();
+    l.add_client_to_hab(Estado);
+    this.list_habitaciones = l;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
