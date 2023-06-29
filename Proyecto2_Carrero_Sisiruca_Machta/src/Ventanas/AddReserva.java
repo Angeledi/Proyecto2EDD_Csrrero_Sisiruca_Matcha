@@ -4,6 +4,7 @@
  */
 package Ventanas;
 
+import static Ventanas.MenuReserva.Reserva;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,15 +17,16 @@ import proyecto2_carrero_sisiruca_machta.Estado;
 import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
 import proyecto2_carrero_sisiruca_machta.Historico;
 import proyecto2_carrero_sisiruca_machta.ListaHabitacion;
+import proyecto2_carrero_sisiruca_machta.Reserva;
 
 
-public class AddClient extends javax.swing.JFrame {
+public class AddReserva extends javax.swing.JFrame {
     
     static HashTableEstadoActual Estado;
     static AVL_Reserva Reserva;
     static AVL_Historico Historico;
     static ListaHabitacion list_habitaciones;
-    public AddClient(HashTableEstadoActual Estado, AVL_Reserva Reserva, AVL_Historico Historico, ListaHabitacion list_habitaciones) {
+    public AddReserva(HashTableEstadoActual Estado, AVL_Reserva Reserva, AVL_Historico Historico, ListaHabitacion list_habitaciones) {
         initComponents();
         this.Estado = Estado;
         this.Reserva = Reserva;
@@ -54,6 +56,13 @@ public class AddClient extends javax.swing.JFrame {
         doble = new javax.swing.JRadioButton();
         triple = new javax.swing.JRadioButton();
         suite = new javax.swing.JRadioButton();
+        InputMM = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        InputDD = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -65,13 +74,15 @@ public class AddClient extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        InputCedula = new javax.swing.JTextField();
         InputAAAA = new javax.swing.JTextField();
+        InputAAAA2 = new javax.swing.JTextField();
         InputCelular = new javax.swing.JTextField();
         InputNombre = new javax.swing.JTextField();
         InputApellido = new javax.swing.JTextField();
         InputEmail = new javax.swing.JTextField();
-        InputDD = new javax.swing.JTextField();
-        InputMM = new javax.swing.JTextField();
+        InputDD2 = new javax.swing.JTextField();
+        InputMM2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         BackToMenu = new javax.swing.JButton();
         AddClient = new javax.swing.JButton();
@@ -88,7 +99,7 @@ public class AddClient extends javax.swing.JFrame {
 
         gender.add(Female);
         Female.setText("Female");
-        getContentPane().add(Female, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
+        getContentPane().add(Female, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, -1, -1));
 
         gender.add(Male);
         Male.setText("Male");
@@ -97,40 +108,79 @@ public class AddClient extends javax.swing.JFrame {
                 MaleActionPerformed(evt);
             }
         });
-        getContentPane().add(Male, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, -1, -1));
+        getContentPane().add(Male, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, -1, -1));
 
         tipoHabitacion.add(simple);
         simple.setText("simple");
-        getContentPane().add(simple, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, -1, -1));
+        getContentPane().add(simple, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, -1, -1));
 
         tipoHabitacion.add(doble);
         doble.setText("doble");
-        getContentPane().add(doble, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, -1, -1));
+        getContentPane().add(doble, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, -1, -1));
 
         tipoHabitacion.add(triple);
         triple.setText("triple");
-        getContentPane().add(triple, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, -1, -1));
+        getContentPane().add(triple, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, -1, -1));
 
         tipoHabitacion.add(suite);
         suite.setText("suite");
-        getContentPane().add(suite, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, -1, -1));
+        getContentPane().add(suite, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, -1, -1));
+
+        InputMM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputMMActionPerformed(evt);
+            }
+        });
+        getContentPane().add(InputMM, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 30, 30));
+
+        jLabel17.setBackground(new java.awt.Color(222, 222, 222));
+        jLabel17.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel17.setText("/");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 30, 30));
+
+        jLabel15.setBackground(new java.awt.Color(222, 222, 222));
+        jLabel15.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel15.setText("LLEGADA:");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 70, 30));
+
+        InputDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputDDActionPerformed(evt);
+            }
+        });
+        getContentPane().add(InputDD, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 30, 30));
+
+        jLabel16.setBackground(new java.awt.Color(222, 222, 222));
+        jLabel16.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel16.setText("/");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 30, 30));
+
+        jLabel18.setBackground(new java.awt.Color(222, 222, 222));
+        jLabel18.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel18.setText("DD           MM          AAAA");
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 160, 30));
+
+        jLabel14.setBackground(new java.awt.Color(222, 222, 222));
+        jLabel14.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel14.setText("CEDULA:");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 70, 30));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Elephant", 0, 19)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("REGISTRAR CLIENTES ACTUALES");
+        jLabel1.setText("REGISTRAR RESERVA");
         jLabel1.setToolTipText("");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 450, 50));
 
         jLabel4.setBackground(new java.awt.Color(222, 222, 222));
         jLabel4.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
         jLabel4.setText("APELLIDO:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 70, 30));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 70, 30));
 
         jLabel5.setBackground(new java.awt.Color(222, 222, 222));
         jLabel5.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
         jLabel5.setText("/");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 30, 30));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 30, 30));
 
         jLabel6.setBackground(new java.awt.Color(222, 222, 222));
         jLabel6.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
@@ -140,51 +190,65 @@ public class AddClient extends javax.swing.JFrame {
         jLabel7.setBackground(new java.awt.Color(222, 222, 222));
         jLabel7.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
         jLabel7.setText("HABITACION:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 90, 30));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 90, 30));
 
         jLabel8.setBackground(new java.awt.Color(222, 222, 222));
         jLabel8.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
         jLabel8.setText("EMAIL:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 70, 30));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 70, 30));
 
         jLabel9.setBackground(new java.awt.Color(222, 222, 222));
         jLabel9.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
         jLabel9.setText("GENERO:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 70, 30));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 70, 30));
 
         jLabel10.setBackground(new java.awt.Color(222, 222, 222));
         jLabel10.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
         jLabel10.setText("DD           MM          AAAA");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 160, 30));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 160, 30));
 
         jLabel11.setBackground(new java.awt.Color(222, 222, 222));
         jLabel11.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
         jLabel11.setText("/");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 30, 30));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 30, 30));
 
         jLabel12.setBackground(new java.awt.Color(222, 222, 222));
         jLabel12.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
-        jLabel12.setText("LLEGADA:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 70, 30));
+        jLabel12.setText("SALIDA:");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 60, 30));
 
         jLabel13.setBackground(new java.awt.Color(222, 222, 222));
         jLabel13.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
         jLabel13.setText("CELULAR:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 70, 30));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 70, 30));
+
+        InputCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputCedulaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(InputCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 120, 30));
 
         InputAAAA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InputAAAAActionPerformed(evt);
             }
         });
-        getContentPane().add(InputAAAA, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 70, 30));
+        getContentPane().add(InputAAAA, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 50, 30));
+
+        InputAAAA2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputAAAA2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(InputAAAA2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 50, 30));
 
         InputCelular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InputCelularActionPerformed(evt);
             }
         });
-        getContentPane().add(InputCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 120, 30));
+        getContentPane().add(InputCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 120, 30));
 
         InputNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,32 +262,32 @@ public class AddClient extends javax.swing.JFrame {
                 InputApellidoActionPerformed(evt);
             }
         });
-        getContentPane().add(InputApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 120, 30));
+        getContentPane().add(InputApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 120, 30));
 
         InputEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InputEmailActionPerformed(evt);
             }
         });
-        getContentPane().add(InputEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 120, 30));
+        getContentPane().add(InputEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 120, 30));
 
-        InputDD.addActionListener(new java.awt.event.ActionListener() {
+        InputDD2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputDDActionPerformed(evt);
+                InputDD2ActionPerformed(evt);
             }
         });
-        getContentPane().add(InputDD, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 30, 30));
+        getContentPane().add(InputDD2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 30, 30));
 
-        InputMM.addActionListener(new java.awt.event.ActionListener() {
+        InputMM2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputMMActionPerformed(evt);
+                InputMM2ActionPerformed(evt);
             }
         });
-        getContentPane().add(InputMM, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 30, 30));
+        getContentPane().add(InputMM2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 30, 30));
 
         jLabel3.setBackground(new java.awt.Color(222, 222, 222));
         jLabel3.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
-        jLabel3.setText("INGRESE LOS DATOS DEL CLIENTE A REGISTRAR");
+        jLabel3.setText("INGRESE LOS DATOS DE LA RESERVACION A REGISTRAR");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 440, 30));
 
         BackToMenu.setText("Volver");
@@ -234,13 +298,13 @@ public class AddClient extends javax.swing.JFrame {
         });
         getContentPane().add(BackToMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
 
-        AddClient.setText("Agregar Nuevo Cliente");
+        AddClient.setText("Agregar Nuevo Reserva");
         AddClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddClientActionPerformed(evt);
             }
         });
-        getContentPane().add(AddClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
+        getContentPane().add(AddClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 380));
@@ -248,14 +312,14 @@ public class AddClient extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void InputAAAAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputAAAAActionPerformed
+    private void InputAAAA2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputAAAA2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InputAAAAActionPerformed
+    }//GEN-LAST:event_InputAAAA2ActionPerformed
 
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        MenuEstado menu = new MenuEstado(Estado, Reserva, Historico, list_habitaciones);
+        MenuReserva menu = new MenuReserva(Estado, Reserva, Historico, list_habitaciones);
         menu.setVisible(true);
         this.dispose();
 
@@ -273,44 +337,54 @@ public class AddClient extends javax.swing.JFrame {
         
         String nombre = InputNombre.getText();
         String apellido = InputApellido.getText();
+        String cedulastr = InputCedula.getText();
         String email = InputEmail.getText();
         String celular = InputCelular.getText();
         
-        if (!"".equals(nombre) & !"".equals(apellido) & !"".equals(email) & !"".equals(celular) & gender.getSelection() != null & tipoHabitacion.getSelection() != null){
+        if (!"".equals(nombre) & !"".equals(apellido) & !"".equals(email) & !"".equals(celular) & gender.getSelection() != null & tipoHabitacion.getSelection() != null & !"".equals(cedulastr)){
             try {
                 String genero = gender.getSelection().getActionCommand();
-                System.out.println(genero);
+                
                 String tha = tipoHabitacion.getSelection().getActionCommand();
-                System.out.println(tha);
+               
+                
+                int cedula = Integer.parseInt(cedulastr);
                 
                 int dd = Integer.parseInt(InputDD .getText());
                 int mm = Integer.parseInt(InputMM.getText());
                 int aaaa = Integer.parseInt(InputAAAA.getText());
                 int[] llegada = {dd, mm, aaaa};
                 
-                Estado cn = Estado.getEstado(nombre, apellido);
+                int dd2 = Integer.parseInt(InputDD2.getText());
+                int mm2 = Integer.parseInt(InputMM2.getText());
+                int aaaa2 = Integer.parseInt(InputAAAA2.getText());
+                int[] salida = {dd2, mm2, aaaa2};
                 
+                Reserva cn = Reserva.buscar2(cedula);
                 
-                
-                if (cn == null){
-                    
-                    int num = list_habitaciones.buscar_habitacion(tha);
-                    
-                    Estado cliente_n = new Estado(num, nombre, apellido, email, genero, celular, llegada);
-                    
-                    int index1 = Estado.hashFunction(cliente_n);
-                    
-                    Estado.insertEstado(cliente_n, index1);
-                    
-                    
-                    JOptionPane.showMessageDialog(null, "Cliente Registrado exitosamente!\n" +"Nombre: "+cliente_n.getNombre()+" "+ cliente_n.getApellido()+"\n"+"Email: "+cliente_n.getEmail()+"\n"+"Genero: "+cliente_n.getGender()+"\n"+"Celular: "+cliente_n.getCelular()+"\n"+"Llegada: "+cliente_n.getLlegada()[0]+"/"+cliente_n.getLlegada()[1]+"/"+cliente_n.getLlegada()[2]+"\n"+"Habitacion: "+ num);
-                
+                if(verify(dd,mm,aaaa,dd2,mm2,aaaa2)){
+                    if (cn == null){
+                        int opcion = JOptionPane.showConfirmDialog(null, "¿Desea continuar con el proceso?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                   
+                        if (opcion == JOptionPane.YES_OPTION) {
+                            Reserva new_r = new Reserva(cedula, nombre, apellido, email, genero, tha, celular, llegada, salida);
+                            Reserva.agregar(new_r);
+                            JOptionPane.showMessageDialog(null, "Reserva Registradoa exitosamente!\n" +new_r.printCliente2());
+        
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Registro de Reserva Cancelado!");
+                        }
+                    } else {
+                    JOptionPane.showMessageDialog(null, "Error! Ya existe una Reserva asignada a esa cedula!");
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error! El cliente con ese nombre ya esta registrado!");
+                    JOptionPane.showMessageDialog(null, "Error! Verifique el valor o formato de la fecha");
                 }
+              
+                
                 
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error! Recuerde escribir solo valores numericos para la llegada!");
+                JOptionPane.showMessageDialog(null, "Error! Recuerde escribir solo valores numericos para la llegada y salida y la cedula!");
             }       
     }
         else{
@@ -334,6 +408,22 @@ public class AddClient extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_InputEmailActionPerformed
 
+    private void InputDD2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputDD2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputDD2ActionPerformed
+
+    private void InputMM2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputMM2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputMM2ActionPerformed
+
+    private void MaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleActionPerformed
+       // Male.setActionCommand("Male");
+    }//GEN-LAST:event_MaleActionPerformed
+
+    private void InputCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputCedulaActionPerformed
+
     private void InputDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputDDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_InputDDActionPerformed
@@ -342,11 +432,29 @@ public class AddClient extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_InputMMActionPerformed
 
-    private void MaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleActionPerformed
-       // Male.setActionCommand("Male");
-    }//GEN-LAST:event_MaleActionPerformed
+    private void InputAAAAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputAAAAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputAAAAActionPerformed
 
-    
+    public boolean verify(int dd1, int mm1, int aaaa1, int dd2, int mm2, int aaaa2) {
+        if (dd1 > 31 || dd1 < 1 || mm1 > 12 || mm1 < 1 || aaaa1 < 0) {
+            // La primera fecha no está en el formato correcto
+            return false;
+        }
+
+        if (dd2 > 31 || dd2 < 1 || mm2 > 12 || mm2 < 1 || aaaa2 < 0) {
+            // La segunda fecha no está en el formato correcto
+            return false;
+        }
+
+        if (aaaa1 > aaaa2 || (aaaa1 == aaaa2 && mm1 > mm2) || (aaaa1 == aaaa2 && mm1 == mm2 && dd1 > dd2)) {
+            // La primera fecha es mayor que la segunda fecha
+            return false;
+        } else {
+            // La segunda fecha es mayor o igual que la primera fecha
+            return true;
+        }
+    }
     
     /**
      * @param args the command line arguments
@@ -365,14 +473,110 @@ public class AddClient extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -409,7 +613,7 @@ public class AddClient extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddClient(Estado, Reserva, Historico, list_habitaciones).setVisible(true);
+                new AddReserva(Estado, Reserva, Historico, list_habitaciones).setVisible(true);
             }
         });
     }
@@ -419,11 +623,15 @@ public class AddClient extends javax.swing.JFrame {
     private javax.swing.JButton BackToMenu;
     private javax.swing.JRadioButton Female;
     private javax.swing.JTextField InputAAAA;
+    private javax.swing.JTextField InputAAAA2;
     private javax.swing.JTextField InputApellido;
+    private javax.swing.JTextField InputCedula;
     private javax.swing.JTextField InputCelular;
     private javax.swing.JTextField InputDD;
+    private javax.swing.JTextField InputDD2;
     private javax.swing.JTextField InputEmail;
     private javax.swing.JTextField InputMM;
+    private javax.swing.JTextField InputMM2;
     private javax.swing.JTextField InputNombre;
     private javax.swing.JRadioButton Male;
     private javax.swing.JRadioButton doble;
@@ -433,6 +641,11 @@ public class AddClient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

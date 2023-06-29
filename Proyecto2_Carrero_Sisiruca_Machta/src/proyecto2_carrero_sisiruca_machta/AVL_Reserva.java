@@ -14,18 +14,18 @@ import javax.swing.JOptionPane;
  *
  * @author acarr
  */
-public class ABB_Reserva {
-    private Nodo raiz;
+public class AVL_Reserva {
+    private NodoReserva raiz;
     
-    public ABB_Reserva(){
+    public AVL_Reserva(){
         this.raiz = null;
     }
 
-    public Nodo getRaiz() {
+    public NodoReserva getRaiz() {
         return raiz;
     }
 
-    public void setRaiz(Nodo raiz) {
+    public void setRaiz(NodoReserva raiz) {
         this.raiz = raiz;
     }
     
@@ -35,7 +35,7 @@ public class ABB_Reserva {
     
     
     public Reserva buscar(int cedula) {
-        Nodo nodoActual = raiz;
+        NodoReserva nodoActual = raiz;
         
         while (nodoActual != null) {
             if (cedula < nodoActual.getReserva().getCedula()) {
@@ -50,7 +50,7 @@ public class ABB_Reserva {
     }
     
     public void initABB_Reserva(){
-        ABB_Reserva Reservas = new ABB_Reserva();
+        AVL_Reserva Reservas = new AVL_Reserva();
         String line;
         String clientes_txt = "";
         String path = "test\\reservas.txt";
@@ -95,7 +95,7 @@ public class ABB_Reserva {
         }
     }
   
-    public void preOrden(Nodo raiz) {
+    public void preOrden(NodoReserva raiz) {
         if (raiz != null) {
             System.out.println("[ " + raiz.getReserva().getApellido() + " ]");
             preOrden(raiz.getIzquierdo());
@@ -114,9 +114,9 @@ public class ABB_Reserva {
         return buscarRec(raiz, cedula);
     }
 
-    private Nodo agregarRec(Nodo nodo, Reserva reservacion) {
+    private NodoReserva agregarRec(NodoReserva nodo, Reserva reservacion) {
         if (nodo == null) {
-            return new Nodo(reservacion);
+            return new NodoReserva(reservacion);
         } else if (reservacion.getCedula() < nodo.getReserva().getCedula()) {
             nodo.setIzquierdo(agregarRec(nodo.getIzquierdo(), reservacion));
         } else {
@@ -149,7 +149,7 @@ public class ABB_Reserva {
         return nodo;
     }
     
-    private Reserva buscarRec(Nodo nodo, int cedula) {
+    private Reserva buscarRec(NodoReserva nodo, int cedula) {
         if (nodo == null) {
             return null;
         } else if (nodo.getReserva().getCedula() == cedula) {
@@ -161,8 +161,8 @@ public class ABB_Reserva {
         }
     }
     
-    private Nodo rotacionIzquierda(Nodo nodo) {
-        Nodo nuevoNodo = nodo.getDerecho();
+    private NodoReserva rotacionIzquierda(NodoReserva nodo) {
+        NodoReserva nuevoNodo = nodo.getDerecho();
         nodo.setDerecho(nuevoNodo.getIzquierdo());
         nuevoNodo.setIzquierdo(nodo);
         
@@ -174,8 +174,8 @@ public class ABB_Reserva {
         return nuevoNodo;
     }
     
-    private Nodo rotacionDerecha(Nodo nodo) {
-        Nodo nuevoNodo = nodo.getIzquierdo();
+    private NodoReserva rotacionDerecha(NodoReserva nodo) {
+        NodoReserva nuevoNodo = nodo.getIzquierdo();
         nodo.setIzquierdo(nuevoNodo.getDerecho());
         nuevoNodo.setDerecho(nodo);
         
@@ -191,7 +191,7 @@ public class ABB_Reserva {
     raiz = eliminarRec(raiz, cedula);
     }
     
-    private Nodo eliminarRec(Nodo nodo, int cedula) {
+    private NodoReserva eliminarRec(NodoReserva nodo, int cedula) {
     if (nodo == null) {
         return null;
     } else if (cedula < nodo.getReserva().getCedula()) {
@@ -202,12 +202,12 @@ public class ABB_Reserva {
         if (nodo.getIzquierdo() == null && nodo.getDerecho() == null) { // Caso 1: el nodo no tiene hijos
             return null;
         } else if (nodo.getIzquierdo() == null || nodo.getDerecho() == null) { // Caso 2: el nodo tiene un hijo
-            Nodo nuevoNodo = (nodo.getIzquierdo() != null) ? nodo.getIzquierdo() : nodo.getDerecho();
+            NodoReserva nuevoNodo = (nodo.getIzquierdo() != null) ? nodo.getIzquierdo() : nodo.getDerecho();
             nodo.setReserva(nuevoNodo.getReserva());
             nodo.setIzquierdo(nuevoNodo.getIzquierdo());
             nodo.setDerecho(nuevoNodo.getDerecho());
         } else { // Caso 3: el nodo tiene dos hijos
-            Nodo sucesor = sucesorInmediato(nodo.getDerecho());
+            NodoReserva sucesor = sucesorInmediato(nodo.getDerecho());
             nodo.setReserva(sucesor.getReserva());
             nodo.setDerecho(eliminarRec(nodo.getDerecho(), sucesor.getReserva().getCedula()));
         }
@@ -239,11 +239,27 @@ public class ABB_Reserva {
     return nodo;
 }
 
-private Nodo sucesorInmediato(Nodo nodo) {
+private NodoReserva sucesorInmediato(NodoReserva nodo) {
     while (nodo.getIzquierdo() != null) {
         nodo = nodo.getIzquierdo();
     }
     return nodo;
+}
+
+public String reservasToString() {
+    return reservasToString(raiz, "");
+}
+
+private String reservasToString(NodoReserva nodo, String cadena) {
+    if (nodo == null) {
+        return cadena;
+    }
+
+    cadena = reservasToString(nodo.getIzquierdo(), cadena);
+    cadena += nodo.getReserva().printCliente()+ "\n";
+    cadena = reservasToString(nodo.getDerecho(), cadena);
+
+    return cadena;
 }
 
 

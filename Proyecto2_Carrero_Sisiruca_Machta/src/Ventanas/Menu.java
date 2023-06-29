@@ -4,8 +4,8 @@
  */
 package Ventanas;
 
-import proyecto2_carrero_sisiruca_machta.ABB_Reserva;
-import proyecto2_carrero_sisiruca_machta.BinarySearchTree;
+import proyecto2_carrero_sisiruca_machta.AVL_Reserva;
+import proyecto2_carrero_sisiruca_machta.AVL_Historico;
 import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
 import proyecto2_carrero_sisiruca_machta.ListaHabitacion;
 
@@ -15,13 +15,13 @@ import proyecto2_carrero_sisiruca_machta.ListaHabitacion;
  */
 public class Menu extends javax.swing.JFrame {
     static HashTableEstadoActual Estado;
-    static ABB_Reserva Reserva;
-    static BinarySearchTree Historico;
+    static AVL_Reserva Reserva;
+    static AVL_Historico Historico;
     static ListaHabitacion list_habitaciones;
     /**
      * Creates new form Menu
      */
-    public Menu(HashTableEstadoActual Estado, ABB_Reserva Reserva, BinarySearchTree Historico, ListaHabitacion list_habitaciones) {
+    public Menu(HashTableEstadoActual Estado, AVL_Reserva Reserva, AVL_Historico Historico, ListaHabitacion list_habitaciones) {
         initComponents();
         this.Estado = Estado;
         this.Reserva = Reserva;
@@ -88,7 +88,7 @@ public class Menu extends javax.swing.JFrame {
         });
         getContentPane().add(HistorialHabitación, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 160, -1));
 
-        jButton4.setText("Comenzar Estadía");
+        jButton4.setText("Check-in");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -96,7 +96,7 @@ public class Menu extends javax.swing.JFrame {
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
 
-        jButton5.setText("Terminar Estadía");
+        jButton5.setText("Check-out");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -111,23 +111,32 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BuscarReservaciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarReservaciónActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        MenuReserva windowReserva = new MenuReserva(Estado, Reserva, Historico, list_habitaciones);
+        windowReserva.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BuscarReservaciónActionPerformed
 
     private void HistorialHabitaciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialHabitaciónActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        SearchRoomHistory windowHistoric = new SearchRoomHistory(Estado, Reserva, Historico, list_habitaciones);
+        MenuHistorico windowHistoric = new MenuHistorico(Estado, Reserva, Historico, list_habitaciones);
         windowHistoric.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_HistorialHabitaciónActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        CheckIn checkin = new CheckIn(Estado, Reserva, Historico, list_habitaciones);
+        checkin.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        CheckOut checkout = new CheckOut(Estado, Reserva, Historico, list_habitaciones);
+        checkout.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void RegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarUsuarioActionPerformed
@@ -145,19 +154,19 @@ public class Menu extends javax.swing.JFrame {
         this.Estado = Estado;
     }
 
-    public ABB_Reserva getReserva() {
+    public AVL_Reserva getReserva() {
         return Reserva;
     }
 
-    public void setReserva(ABB_Reserva Reserva) {
+    public void setReserva(AVL_Reserva Reserva) {
         this.Reserva = Reserva;
     }
 
-    public BinarySearchTree getHistorico() {
+    public AVL_Historico getHistorico() {
         return Historico;
     }
 
-    public void setHistorico(BinarySearchTree Historico) {
+    public void setHistorico(AVL_Historico Historico) {
         this.Historico = Historico;
     }
 
@@ -205,11 +214,11 @@ public class Menu extends javax.swing.JFrame {
     e.initHashTableEstado();
     this.Estado = e;
     
-    ABB_Reserva r = new ABB_Reserva();
+    AVL_Reserva r = new AVL_Reserva();
     r.initABB_Reserva();
     this.Reserva = r;
     
-    BinarySearchTree h = new BinarySearchTree();
+    AVL_Historico h = new AVL_Historico();
     h.initABB_Historial();
     this.Historico = h;
     

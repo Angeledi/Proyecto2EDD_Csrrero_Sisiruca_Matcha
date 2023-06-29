@@ -4,35 +4,32 @@
  */
 package Ventanas;
 
-import static Ventanas.Menu.Estado;
-import static Ventanas.Menu.Historico;
-import static Ventanas.Menu.Reserva;
-import static Ventanas.Menu.list_habitaciones;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import javax.swing.JOptionPane;
-import proyecto2_carrero_sisiruca_machta.ABB_Reserva;
-import proyecto2_carrero_sisiruca_machta.BinarySearchTree;
+import proyecto2_carrero_sisiruca_machta.Reserva;
+import proyecto2_carrero_sisiruca_machta.Estado;
+import proyecto2_carrero_sisiruca_machta.AVL_Reserva;
+import proyecto2_carrero_sisiruca_machta.AVL_Historico;
 import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
-import proyecto2_carrero_sisiruca_machta.Historic;
 import proyecto2_carrero_sisiruca_machta.ListaHabitacion;
 
-
-public class SearchRoomHistory extends javax.swing.JFrame {
-    static BinarySearchTree Historico;
-    static HashTableEstadoActual Estado;
-    static ABB_Reserva Reserva;
-    static ListaHabitacion list_habitaciones;
-    public SearchRoomHistory(HashTableEstadoActual Estado, ABB_Reserva Reserva, BinarySearchTree Historico, ListaHabitacion list_habitaciones) {
+public class CheckIn extends javax.swing.JFrame {
+    private HashTableEstadoActual Estado;
+    private AVL_Reserva Reserva;
+    private AVL_Historico Historico;
+    private ListaHabitacion list_habitaciones;
+    
+    public CheckIn() {
+        initComponents();
+        setLocationRelativeTo(null);
+    }
+    
+    public CheckIn(HashTableEstadoActual Estado, AVL_Reserva Reserva, AVL_Historico Historico, ListaHabitacion Habitaciones) {
         initComponents();
         this.Estado = Estado;
         this.Reserva = Reserva;
         this.Historico = Historico;
-        this.list_habitaciones = list_habitaciones;
+        this.list_habitaciones = Habitaciones;
         setLocationRelativeTo(null);
-
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,12 +44,10 @@ public class SearchRoomHistory extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
-        InputRoom = new javax.swing.JTextField();
+        InputCedula = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         BackToMenu = new javax.swing.JButton();
         SearchHistoryRoomClient = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textClientHistory = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
 
         jMenu1.setText("File");
@@ -67,21 +62,21 @@ public class SearchRoomHistory extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(222, 222, 222));
         jLabel1.setFont(new java.awt.Font("Elephant", 0, 19)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("BUSCAR HISTORIAL DE HABITACIÓN");
+        jLabel1.setText("CHECK-IN");
         jLabel1.setToolTipText("");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 450, 50));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 450, 50));
 
-        InputRoom.addActionListener(new java.awt.event.ActionListener() {
+        InputCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputRoomActionPerformed(evt);
+                InputCedulaActionPerformed(evt);
             }
         });
-        getContentPane().add(InputRoom, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 140, 30));
+        getContentPane().add(InputCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 360, 30));
 
         jLabel3.setBackground(new java.awt.Color(222, 222, 222));
         jLabel3.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
-        jLabel3.setText("INGRESE EL NUMERO DE HABITACIÓN ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 250, 30));
+        jLabel3.setText("INGRESE LA CÉDULA DEL HUÉSPED:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 340, 30));
 
         BackToMenu.setText("Volver");
         BackToMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -89,37 +84,30 @@ public class SearchRoomHistory extends javax.swing.JFrame {
                 BackToMenuActionPerformed(evt);
             }
         });
-        getContentPane().add(BackToMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
+        getContentPane().add(BackToMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, -1));
 
-        SearchHistoryRoomClient.setText("Buscar");
+        SearchHistoryRoomClient.setText("Realizar");
         SearchHistoryRoomClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SearchHistoryRoomClientActionPerformed(evt);
             }
         });
-        getContentPane().add(SearchHistoryRoomClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, -1, -1));
-
-        textClientHistory.setColumns(20);
-        textClientHistory.setRows(5);
-        jScrollPane1.setViewportView(textClientHistory);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 490, 190));
+        getContentPane().add(SearchHistoryRoomClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 380));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 320));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void InputRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputRoomActionPerformed
+    private void InputCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCedulaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InputRoomActionPerformed
+    }//GEN-LAST:event_InputCedulaActionPerformed
 
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
         Menu menu = new Menu(Estado, Reserva, Historico, list_habitaciones);
-       // menu.setHistorico(Historico);
         menu.setVisible(true);
         this.dispose();
 
@@ -127,28 +115,52 @@ public class SearchRoomHistory extends javax.swing.JFrame {
 
     private void SearchHistoryRoomClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchHistoryRoomClientActionPerformed
         // TODO add your handling code here:
-        String palabra = InputRoom.getText();
-        if (!"".equals(palabra)){
+        String input = InputCedula.getText().replace(".", "");
+        
+        if(input.equals("")){
+            JOptionPane.showMessageDialog(null, "Introduzca la cédula del huésped");
+            return;
+        } else {
             try {
-                int numHabitacion = Integer.parseInt(InputRoom.getText());
-                String str = Historico.printHistoryRoom(numHabitacion);
-                textClientHistory.setText(str);
-
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Error! Recuerde escribir un numero entero!");
-            }       
-    }
-        else{
-            JOptionPane.showMessageDialog(null, "Escribe un numero de habitacion");
+                int cedula = Integer.parseInt(input);
+                Reserva r = Reserva.buscar(cedula);
+                if(r == null){
+                    JOptionPane.showMessageDialog(null, "Este huésped no tiene una reservación o ya entro a las instalaciones!");
+                } else {
+                    int opcion = JOptionPane.showConfirmDialog(null, "¿Desea continuar con el proceso?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                   
+                        if (opcion == JOptionPane.YES_OPTION) {
+                           int num_hab = list_habitaciones.buscar_habitacion(r.getTipo_habitacion());
+            
+                            Estado e = new Estado(num_hab, r.getNombre(), r.getApellido(), r.getEmail(), r.getGender(), r.getCelular(), r.getLlegada());
+                            e.setCedula(cedula);
+                            list_habitaciones.actualizarestadoHab(num_hab, e);
+                            int index = Estado.hashFunction(e);
+                            Estado.insertCliente(e, index);
+                            Reserva.eliminar(cedula);
+            
+                            JOptionPane.showMessageDialog(null, "Check-In Exitoso: \nAl huesped se le ha asignado la habitación número " + num_hab);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Check-In Cancelado!");
+                        }
+                    
+                }   
+                
+            } catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error! Ingrese solo valores numericos!");
+            }
+        
         }
+        
+        
     }//GEN-LAST:event_SearchHistoryRoomClientActionPerformed
 
-    public BinarySearchTree getHistorico() {
+    public AVL_Historico getArbol() {
         return Historico;
     }
 
-    public void setHistorico(BinarySearchTree Historico) {
-        this.Historico = Historico;
+    public void setArbol(AVL_Historico arbol) {
+        this.Historico = arbol;
     }
     
     /**
@@ -168,28 +180,34 @@ public class SearchRoomHistory extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SearchRoomHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SearchRoomHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SearchRoomHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SearchRoomHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SearchRoomHistory(Estado, Reserva, Historico, list_habitaciones).setVisible(true);
+                new CheckIn().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackToMenu;
-    private javax.swing.JTextField InputRoom;
+    private javax.swing.JTextField InputCedula;
     private javax.swing.JButton SearchHistoryRoomClient;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -197,7 +215,5 @@ public class SearchRoomHistory extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea textClientHistory;
     // End of variables declaration//GEN-END:variables
 }

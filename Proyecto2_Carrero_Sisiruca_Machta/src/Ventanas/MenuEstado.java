@@ -9,22 +9,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import javax.swing.JOptionPane;
-import proyecto2_carrero_sisiruca_machta.ABB_Reserva;
-import proyecto2_carrero_sisiruca_machta.BinarySearchTree;
+import proyecto2_carrero_sisiruca_machta.AVL_Reserva;
+import proyecto2_carrero_sisiruca_machta.AVL_Historico;
 import proyecto2_carrero_sisiruca_machta.Estado;
 
 import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
-import proyecto2_carrero_sisiruca_machta.Historic;
+import proyecto2_carrero_sisiruca_machta.Historico;
 import proyecto2_carrero_sisiruca_machta.ListaHabitacion;
 
 
 public class MenuEstado extends javax.swing.JFrame {
     
     static HashTableEstadoActual Estado;
-    static ABB_Reserva Reserva;
-    static BinarySearchTree Historico;
+    static AVL_Reserva Reserva;
+    static AVL_Historico Historico;
     static ListaHabitacion list_habitaciones;
-    public MenuEstado(HashTableEstadoActual Estado, ABB_Reserva Reserva, BinarySearchTree Historico, ListaHabitacion list_habitaciones) {
+    public MenuEstado(HashTableEstadoActual Estado, AVL_Reserva Reserva, AVL_Historico Historico, ListaHabitacion list_habitaciones) {
         initComponents();
         this.Estado = Estado;
         this.Reserva = Reserva;

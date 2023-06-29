@@ -122,8 +122,33 @@ public class ListaHabitacion {
             pointer = pointer.getNext();
         }
         
+        
         return new_hab;
+    }
+        
+    public void actualizarestadoHab(int numero_hab, Estado cliente_actual){
+        Habitacion pointer = getHeadpiso();
+        
+        while (pointer != null){
+            if (pointer.getNum() == numero_hab){
+                pointer.setCliente_actual(cliente_actual);
+               
+            }
+            pointer = pointer.getNext();
+        }
+         
+    }
     
-    
+    public void desocuparHabitacion(int numero_hab){
+        Habitacion pointer = getHeadpiso();
+        
+        while (pointer != null){
+            if (pointer.getNum() == numero_hab){
+                pointer.setCliente_actual(null);
+               
+            }
+            pointer = pointer.getNext();
+        }
+         
     }
 }

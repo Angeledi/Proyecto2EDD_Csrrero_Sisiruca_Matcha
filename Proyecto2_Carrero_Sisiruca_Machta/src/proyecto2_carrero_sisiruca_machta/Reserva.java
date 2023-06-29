@@ -116,7 +116,13 @@ public class Reserva {
     }
     
     public String printCliente(){
-        String str = ("Nombre: "+nombre+" "+apellido+", Email: "+email+", Genero: "+gender+", Habitacion: "+ tipo_habitacion+", Celular: "+celular+", Llegada: "+llegada[0]+"/"+llegada[1]+"/"+llegada[2]+", Salida: "+salida[0]+"/"+salida[1]+"/"+salida[2]);
+        String str = ("Nombre: "+nombre+" "+apellido+", Cedula: "+cedula+", Email: "+email+", Genero: "+gender+", Tipo de Habitacion: "+ tipo_habitacion+", Celular: "+celular+", Llegada: "+llegada[0]+"/"+llegada[1]+"/"+llegada[2]+", Salida: "+salida[0]+"/"+salida[1]+"/"+salida[2]);
         return str;
     }
+    
+    public String printCliente2(){
+        String str = ("Nombre: "+nombre+" "+apellido+"\n"+"Cedula: "+cedula+"\n"+"Email: "+email+"\n"+"Genero: "+gender+"\n"+"Tipo de Habitacion: "+ tipo_habitacion+"\n"+"Celular: "+celular+"\n"+"Llegada: "+llegada[0]+"/"+llegada[1]+"/"+llegada[2]+"\n"+"Salida: "+salida[0]+"/"+salida[1]+"/"+salida[2]);
+        return str;
+    }
+    
 }

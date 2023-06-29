@@ -9,22 +9,23 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import javax.swing.JOptionPane;
-import proyecto2_carrero_sisiruca_machta.ABB_Reserva;
-import proyecto2_carrero_sisiruca_machta.BinarySearchTree;
+import proyecto2_carrero_sisiruca_machta.AVL_Reserva;
+import proyecto2_carrero_sisiruca_machta.AVL_Historico;
 import proyecto2_carrero_sisiruca_machta.Estado;
 
 import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
-import proyecto2_carrero_sisiruca_machta.Historic;
+import proyecto2_carrero_sisiruca_machta.Historico;
 import proyecto2_carrero_sisiruca_machta.ListaHabitacion;
+import proyecto2_carrero_sisiruca_machta.Reserva;
 
 
 public class MenuReserva extends javax.swing.JFrame {
     
     static HashTableEstadoActual Estado;
-    static ABB_Reserva Reserva;
-    static BinarySearchTree Historico;
+    static AVL_Reserva Reserva;
+    static AVL_Historico Historico;
     static ListaHabitacion list_habitaciones;
-    public MenuReserva(HashTableEstadoActual Estado, ABB_Reserva Reserva, BinarySearchTree Historico, ListaHabitacion list_habitaciones) {
+    public MenuReserva(HashTableEstadoActual Estado, AVL_Reserva Reserva, AVL_Historico Historico, ListaHabitacion list_habitaciones) {
         initComponents();
         this.Estado = Estado;
         this.Reserva = Reserva;
@@ -49,13 +50,13 @@ public class MenuReserva extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        InputApellido = new javax.swing.JTextField();
-        InputNombre = new javax.swing.JTextField();
+        InputCedula = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         BackToMenu = new javax.swing.JButton();
         MostrarAllClients = new javax.swing.JButton();
         AddClient = new javax.swing.JButton();
         SearchClientEstado = new javax.swing.JButton();
+        SearchClientEstado1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         textClient = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
@@ -78,31 +79,24 @@ public class MenuReserva extends javax.swing.JFrame {
 
         jLabel4.setBackground(new java.awt.Color(222, 222, 222));
         jLabel4.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
-        jLabel4.setText("APELLIDO:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 70, 30));
+        jLabel4.setText("Ó");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 20, 30));
 
         jLabel5.setBackground(new java.awt.Color(222, 222, 222));
         jLabel5.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
         jLabel5.setText("CEDULA:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 70, 30));
 
-        InputApellido.addActionListener(new java.awt.event.ActionListener() {
+        InputCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputApellidoActionPerformed(evt);
+                InputCedulaActionPerformed(evt);
             }
         });
-        getContentPane().add(InputApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 120, 30));
-
-        InputNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputNombreActionPerformed(evt);
-            }
-        });
-        getContentPane().add(InputNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 120, 30));
+        getContentPane().add(InputCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 120, 30));
 
         jLabel3.setBackground(new java.awt.Color(222, 222, 222));
         jLabel3.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
-        jLabel3.setText("INGRESE LOS DATOS DEL CLIENTE A BUSCAR (CEDULA)");
+        jLabel3.setText("INGRESE LOS DATOS DEL CLIENTE A BUSCAR Ó BORRAR (CEDULA)");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 440, 30));
 
         BackToMenu.setText("Volver");
@@ -129,13 +123,21 @@ public class MenuReserva extends javax.swing.JFrame {
         });
         getContentPane().add(AddClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, -1, -1));
 
-        SearchClientEstado.setText("Buscar");
+        SearchClientEstado.setText("Borrar Reserva");
         SearchClientEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SearchClientEstadoActionPerformed(evt);
             }
         });
-        getContentPane().add(SearchClientEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, -1, -1));
+        getContentPane().add(SearchClientEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, -1));
+
+        SearchClientEstado1.setText("Buscar");
+        SearchClientEstado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchClientEstado1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(SearchClientEstado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, -1));
 
         textClient.setColumns(20);
         textClient.setRows(5);
@@ -149,10 +151,6 @@ public class MenuReserva extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void InputApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputApellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InputApellidoActionPerformed
-
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
@@ -164,58 +162,75 @@ public class MenuReserva extends javax.swing.JFrame {
 
     private void SearchClientEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchClientEstadoActionPerformed
         // TODO add your handling code here:
-        String nombre = InputNombre.getText();
-        String apellido = InputApellido.getText();
-        if (!"".equals(nombre) & !"".equals(apellido)){
+        String cedulastr = InputCedula.getText();
+        
+        if (!"".equals(cedulastr)){
             try {
-          
-                Estado cn = Estado.getEstado(nombre, apellido);
-                Object coun = cn.getNum_habitacion();
-                if (cn.getNum_habitacion() == -1){
-                    coun = "No se ha asignado Habitacion";
+                int cedula = Integer.parseInt(cedulastr);
+                Reserva found_r = Reserva.buscar2(cedula);
+                if (found_r == null){
+                    JOptionPane.showMessageDialog(null, "Error! La Reservacion ya fue borrada o la cedula no coincide con la base de datos");
+                } else {
+                int opcion = JOptionPane.showConfirmDialog(null, "¿Desea continuar con el proceso?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                    
+                if (opcion == JOptionPane.YES_OPTION) {
+                    Reserva.eliminar(cedula);
+                    JOptionPane.showMessageDialog(null, "Reserva eliminada Satisfactoriamente!");
+                    textClient.setText("Eliminado:\n"+found_r.printCliente2());
+                } else {
+                    
+                    // Cancelar el proceso
+                    JOptionPane.showMessageDialog(null, "Eliminacion Cancelada!");
                 }
-                String str = "\nCliente\n" +"Nombre: "+cn.getNombre()+" "+ cn.getApellido()+"\n"+"Email: "+cn.getEmail()+"\n"+"Genero: "+cn.getGender()+"\n"+"Celular: "+cn.getCelular()+"\n"+"Llegada: "+cn.getLlegada()[0]+"/"+cn.getLlegada()[1]+"/"+cn.getLlegada()[2]+"\n"+"Habitacion: "+ coun;
-                textClient.setText(str);
+            }
+                
+                
 
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error! Recuerde escribir un nombre que este registrado!");
+                JOptionPane.showMessageDialog(null, "Error! Recuerde escribir una cedula en valor numerico, sin puntos ni letras!");
             }       
     }
         else{
-            JOptionPane.showMessageDialog(null, "Error! recuerde escribir en ambos cambos!");
+            JOptionPane.showMessageDialog(null, "Error! recuerde escribir en el campo 'cedula'!");
         }
     }//GEN-LAST:event_SearchClientEstadoActionPerformed
 
     private void MostrarAllClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarAllClientsActionPerformed
-        String str = "";
-        for (int i =0; i < Estado.getSize() ; i++){
-        if (Estado.getArray_reservas()[i] != null){
-            
-            Estado pointer = Estado.getArray_reservas()[i];
-            while (pointer != null) {
-                Object coun = pointer.getNum_habitacion();
-                if (pointer.getNum_habitacion() == -1){
-                    coun = "No se ha asignado Habitacion";
-                }
-                str += "Nombre: "+pointer.getNombre()+" "+ pointer.getApellido()+" Email: "+pointer.getEmail()+" Genero: "+pointer.getGender()+" Celular: "+pointer.getCelular()+" Llegada: "+pointer.getLlegada()[0]+"/"+pointer.getLlegada()[1]+"/"+pointer.getLlegada()[2]+" Habitacion: "+ coun+"\n";
-                pointer = pointer.getNext();
-                }
-        } 
-        
-        }
+        String str = Reserva.reservasToString();
         textClient.setText(str);
     }//GEN-LAST:event_MostrarAllClientsActionPerformed
 
     private void AddClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddClientActionPerformed
         this.setVisible(false);
-        AddClient menu = new AddClient(Estado, Reserva, Historico, list_habitaciones);
-        menu.setVisible(true);
+        AddReserva add = new AddReserva(Estado, Reserva, Historico, list_habitaciones);
+        add.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_AddClientActionPerformed
 
-    private void InputNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputNombreActionPerformed
+    private void InputCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCedulaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InputNombreActionPerformed
+    }//GEN-LAST:event_InputCedulaActionPerformed
+
+    private void SearchClientEstado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchClientEstado1ActionPerformed
+        String cedulastr = InputCedula.getText();
+        
+        if (!"".equals(cedulastr)){
+            try {
+                int cedula = Integer.parseInt(cedulastr);
+                Reserva found_r = Reserva.buscar2(cedula);
+                String str = found_r.printCliente2();
+                textClient.setText("Reserva encontrada: \n\n"+str);
+              
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error! Recuerde escribir una cedula que este registrado!");
+            }       
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Error! recuerde escribir en el campo 'cedula'!");
+        }
+                     
+    }//GEN-LAST:event_SearchClientEstado1ActionPerformed
 
     
     
@@ -288,10 +303,10 @@ public class MenuReserva extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddClient;
     private javax.swing.JButton BackToMenu;
-    private javax.swing.JTextField InputApellido;
-    private javax.swing.JTextField InputNombre;
+    private javax.swing.JTextField InputCedula;
     private javax.swing.JButton MostrarAllClients;
     private javax.swing.JButton SearchClientEstado;
+    private javax.swing.JButton SearchClientEstado1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

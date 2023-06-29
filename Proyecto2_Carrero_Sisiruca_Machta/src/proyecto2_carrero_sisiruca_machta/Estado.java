@@ -18,6 +18,7 @@ public class Estado {
     private String celular;
     private int[] llegada;
     private Estado next;
+    private int cedula;
     
     public Estado(int num_habitacion ,String nombre, String apellido, String email, String gender, String celular, int[] llegada){
         this.nombre = nombre;
@@ -27,6 +28,7 @@ public class Estado {
         this.celular = celular;
         this.llegada = llegada;
         this.num_habitacion = num_habitacion;
+        this.cedula = -1;
     }
 
     public int getNum_habitacion() {
@@ -91,6 +93,21 @@ public class Estado {
 
     public void setNext(Estado next) {
         this.next = next;
+    }
+
+    public int getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
+    }
+    
+    public String llegadatoString(){
+        String str = llegada[0]+"/"+llegada[1]+"/"+llegada[2];
+        System.out.println(str);
+        return str;
+    
     }
     
     public void print(){
