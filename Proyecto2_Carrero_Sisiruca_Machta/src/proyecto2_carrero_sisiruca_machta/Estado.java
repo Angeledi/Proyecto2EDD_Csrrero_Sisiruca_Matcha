@@ -106,7 +106,6 @@ public class Estado {
     //metodo que tranforma el array de datos de llegada a uns string
     public String llegadatoString(){
         String str = llegada[0]+"/"+llegada[1]+"/"+llegada[2];
-        System.out.println(str);
         return str;
     
     }
