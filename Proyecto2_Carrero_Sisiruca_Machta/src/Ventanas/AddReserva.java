@@ -135,11 +135,13 @@ public class AddReserva extends javax.swing.JFrame {
 
         jLabel17.setBackground(new java.awt.Color(222, 222, 222));
         jLabel17.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("/");
         getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 30, 30));
 
         jLabel15.setBackground(new java.awt.Color(222, 222, 222));
         jLabel15.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("LLEGADA:");
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 70, 30));
 
@@ -152,73 +154,87 @@ public class AddReserva extends javax.swing.JFrame {
 
         jLabel16.setBackground(new java.awt.Color(222, 222, 222));
         jLabel16.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("/");
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 30, 30));
 
         jLabel18.setBackground(new java.awt.Color(222, 222, 222));
         jLabel18.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("DD           MM          AAAA");
         getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 160, 30));
 
         jLabel14.setBackground(new java.awt.Color(222, 222, 222));
         jLabel14.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("CEDULA:");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 70, 30));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Elephant", 0, 19)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Elephant", 0, 26)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("REGISTRAR RESERVA");
         jLabel1.setToolTipText("");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 450, 50));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 450, 50));
 
         jLabel4.setBackground(new java.awt.Color(222, 222, 222));
         jLabel4.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("APELLIDO:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 70, 30));
 
         jLabel5.setBackground(new java.awt.Color(222, 222, 222));
         jLabel5.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("/");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 30, 30));
 
         jLabel6.setBackground(new java.awt.Color(222, 222, 222));
         jLabel6.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("NOMBRE:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 70, 30));
 
         jLabel7.setBackground(new java.awt.Color(222, 222, 222));
         jLabel7.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("HABITACION:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 90, 30));
 
         jLabel8.setBackground(new java.awt.Color(222, 222, 222));
         jLabel8.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("EMAIL:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 70, 30));
 
         jLabel9.setBackground(new java.awt.Color(222, 222, 222));
         jLabel9.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("GENERO:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 70, 30));
 
         jLabel10.setBackground(new java.awt.Color(222, 222, 222));
         jLabel10.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("DD           MM          AAAA");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 160, 30));
 
         jLabel11.setBackground(new java.awt.Color(222, 222, 222));
         jLabel11.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("/");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 30, 30));
 
         jLabel12.setBackground(new java.awt.Color(222, 222, 222));
         jLabel12.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("SALIDA:");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 60, 30));
 
         jLabel13.setBackground(new java.awt.Color(222, 222, 222));
         jLabel13.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("CELULAR:");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 70, 30));
 
@@ -287,6 +303,7 @@ public class AddReserva extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(222, 222, 222));
         jLabel3.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("INGRESE LOS DATOS DE LA RESERVACION A REGISTRAR");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 440, 30));
 
@@ -306,6 +323,7 @@ public class AddReserva extends javax.swing.JFrame {
         });
         getContentPane().add(AddClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, -1, -1));
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 380));
 

@@ -40,29 +40,16 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Logo = new javax.swing.JPanel();
         RegistrarUsuario = new javax.swing.JButton();
         BuscarReservación = new javax.swing.JButton();
         HistorialHabitación = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        Logo = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        javax.swing.GroupLayout LogoLayout = new javax.swing.GroupLayout(Logo);
-        Logo.setLayout(LogoLayout);
-        LogoLayout.setHorizontalGroup(
-            LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 240, Short.MAX_VALUE)
-        );
-        LogoLayout.setVerticalGroup(
-            LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 170, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 240, 170));
 
         RegistrarUsuario.setText("Registrar Usuario");
         RegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +57,7 @@ public class Menu extends javax.swing.JFrame {
                 RegistrarUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(RegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
+        getContentPane().add(RegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 200, -1));
 
         BuscarReservación.setText("Buscar Reservación");
         BuscarReservación.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +65,7 @@ public class Menu extends javax.swing.JFrame {
                 BuscarReservaciónActionPerformed(evt);
             }
         });
-        getContentPane().add(BuscarReservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 140, -1));
+        getContentPane().add(BuscarReservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 200, -1));
 
         HistorialHabitación.setText(" Historial de Habitación  ");
         HistorialHabitación.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +73,7 @@ public class Menu extends javax.swing.JFrame {
                 HistorialHabitaciónActionPerformed(evt);
             }
         });
-        getContentPane().add(HistorialHabitación, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 160, -1));
+        getContentPane().add(HistorialHabitación, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 200, -1));
 
         jButton4.setText("Check-in");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +81,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
 
         jButton5.setText("Check-out");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +89,10 @@ public class Menu extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, -1, -1));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, -1, -1));
+
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo.png"))); // NOI18N
+        getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 300, 190));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 390));
@@ -204,8 +194,7 @@ public class Menu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Menu(Estado, Reserva, Historico, list_habitaciones).setVisible(true);
-                Imagen im = new Imagen(Logo);
-                Logo.add(im).repaint();
+
             }
         });
     }
@@ -232,7 +221,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton BuscarReservación;
     private javax.swing.JLabel Fondo;
     private javax.swing.JButton HistorialHabitación;
-    private static javax.swing.JPanel Logo;
+    private javax.swing.JLabel Logo;
     private javax.swing.JButton RegistrarUsuario;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

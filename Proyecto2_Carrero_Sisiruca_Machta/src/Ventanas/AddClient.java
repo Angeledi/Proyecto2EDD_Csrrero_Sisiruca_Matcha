@@ -117,6 +117,7 @@ public class AddClient extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Elephant", 0, 19)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("REGISTRAR CLIENTES ACTUALES");
         jLabel1.setToolTipText("");
@@ -124,51 +125,61 @@ public class AddClient extends javax.swing.JFrame {
 
         jLabel4.setBackground(new java.awt.Color(222, 222, 222));
         jLabel4.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("APELLIDO:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 70, 30));
 
         jLabel5.setBackground(new java.awt.Color(222, 222, 222));
         jLabel5.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("/");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 30, 30));
 
         jLabel6.setBackground(new java.awt.Color(222, 222, 222));
         jLabel6.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("NOMBRE:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 70, 30));
 
         jLabel7.setBackground(new java.awt.Color(222, 222, 222));
         jLabel7.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("HABITACION:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 90, 30));
 
         jLabel8.setBackground(new java.awt.Color(222, 222, 222));
         jLabel8.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("EMAIL:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 70, 30));
 
         jLabel9.setBackground(new java.awt.Color(222, 222, 222));
         jLabel9.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("GENERO:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 70, 30));
 
         jLabel10.setBackground(new java.awt.Color(222, 222, 222));
         jLabel10.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("DD           MM          AAAA");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 160, 30));
 
         jLabel11.setBackground(new java.awt.Color(222, 222, 222));
         jLabel11.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("/");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 30, 30));
 
         jLabel12.setBackground(new java.awt.Color(222, 222, 222));
         jLabel12.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("LLEGADA:");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 70, 30));
 
         jLabel13.setBackground(new java.awt.Color(222, 222, 222));
         jLabel13.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("CELULAR:");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 70, 30));
 
@@ -223,6 +234,7 @@ public class AddClient extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(222, 222, 222));
         jLabel3.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("INGRESE LOS DATOS DEL CLIENTE A REGISTRAR");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 440, 30));
 
