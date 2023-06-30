@@ -113,16 +113,15 @@ public class HashTableEstadoActual {
             }
             if (!"".equals(clientes_txt)) {
                 String[] clientes_split = clientes_txt.split("\n");
-                
+
                 for (int i = 1; i < clientes_split.length; i++) {
                         String[] Cliente = clientes_split[i].split(",");
-                        
-                        Boolean checkedIn;
-                        int num_habitacion = i;
+                  
+                        int num_habitacion;
                         if ("".equals(Cliente[0])){
-                           checkedIn = false;
-                        } else { checkedIn = true; }                
-                        
+                           num_habitacion = -1;
+                        } else {num_habitacion = Integer.parseInt(Cliente[0]);}
+          
                         String primer_nombre = Cliente[1];
                         String apellido = Cliente[2];
                         String email = Cliente[3];
@@ -131,7 +130,7 @@ public class HashTableEstadoActual {
                         String[] llegada_aux = Cliente[6].split("/");
                         int[] llegada = new int[]{Integer.parseInt(llegada_aux[0]),Integer.parseInt(llegada_aux[1]),Integer.parseInt(llegada_aux[2])};
          
-                        Estado nuevo_cliente = new Estado(num_habitacion, primer_nombre, apellido, email, genero, celular, llegada, checkedIn);
+                        Estado nuevo_cliente = new Estado(num_habitacion, primer_nombre, apellido, email, genero, celular, llegada);
                         int index1 = hashFunction(nuevo_cliente);
                        // nuevo_cliente.print();
     
@@ -160,6 +159,7 @@ public class HashTableEstadoActual {
     }
     
     public void insertEstado(Estado cliente, int index) {
+        
         if (this.array_estado[index] == null) {
             this.array_estado[index] = cliente;
         } else {
@@ -181,6 +181,44 @@ public class HashTableEstadoActual {
             pointer = pointer.getNext();
         }
         return null;
+    }
+    
+    public Estado borrar_Estado(String nombre, String apellido) {
+    int index = hashFunctionString(nombre+apellido);
+        Estado pointer = array_estado[index];
+        Estado pointer2 = pointer.getNext();
+        while (pointer2 != null) {
+            
+            if (pointer2.getNombre().equals(nombre) && pointer2.getApellido().equals(apellido)) {
+                Estado pointer3 = (Estado) pointer2.getNext();
+              //  System.out.println(pointer3.getApellido());
+                pointer.setNext(pointer3);
+               // pointer2.setNext(null);
+                return pointer2;
+            }
+            pointer = pointer2.getNext();
+            pointer2 = pointer.getNext();
+        }
+        
+        return null;
+    }
+    public Estado borrar(String nombre, String apellido){
+        int index = hashFunctionString(nombre+apellido);
+        Estado pointer = array_estado[index];
+        
+        Estado pointer2;
+        int cont = 0;
+        while (pointer != null) {
+            if (pointer.getNombre().equals(nombre) && pointer.getApellido().equals(apellido)){
+            
+            }
+            pointer = (Estado) pointer.getNext();
+            cont++;
+        }
+        pointer2 = (Estado) pointer.getNext();
+        pointer.setNext((Estado) pointer2.getNext());
+        pointer2.setNext(null);
+        return pointer2;
     }
      
 }

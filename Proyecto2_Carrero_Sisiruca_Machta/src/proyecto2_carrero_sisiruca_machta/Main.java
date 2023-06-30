@@ -18,7 +18,7 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        Menu window = new Menu();
+        Menu window = new Menu(null, null, null, null);
         window.initDatos();
         window.setVisible(true);
         

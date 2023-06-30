@@ -5,26 +5,30 @@
 package Ventanas;
 
 import javax.swing.JOptionPane;
+import proyecto2_carrero_sisiruca_machta.Reserva;
 import proyecto2_carrero_sisiruca_machta.Estado;
-import proyecto2_carrero_sisiruca_machta.ABB_Reserva;
-import proyecto2_carrero_sisiruca_machta.BinarySearchTree;
+import proyecto2_carrero_sisiruca_machta.AVL_Reserva;
+import proyecto2_carrero_sisiruca_machta.AVL_Historico;
 import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
+import proyecto2_carrero_sisiruca_machta.ListaHabitacion;
 
 public class CheckIn extends javax.swing.JFrame {
     private HashTableEstadoActual Estado;
-    private ABB_Reserva Reserva;
-    private BinarySearchTree Historico;
+    private AVL_Reserva Reserva;
+    private AVL_Historico Historico;
+    private ListaHabitacion list_habitaciones;
     
     public CheckIn() {
         initComponents();
         setLocationRelativeTo(null);
     }
     
-    public CheckIn(HashTableEstadoActual Estado, ABB_Reserva Reserva, BinarySearchTree Historico) {
+    public CheckIn(HashTableEstadoActual Estado, AVL_Reserva Reserva, AVL_Historico Historico, ListaHabitacion Habitaciones) {
         initComponents();
         this.Estado = Estado;
         this.Reserva = Reserva;
         this.Historico = Historico;
+        this.list_habitaciones = Habitaciones;
         setLocationRelativeTo(null);
     }
     /**
@@ -40,7 +44,7 @@ public class CheckIn extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
-        InputNombre = new javax.swing.JTextField();
+        InputCedula = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         BackToMenu = new javax.swing.JButton();
         SearchHistoryRoomClient = new javax.swing.JButton();
@@ -58,20 +62,20 @@ public class CheckIn extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(222, 222, 222));
         jLabel1.setFont(new java.awt.Font("Elephant", 0, 19)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Check In");
+        jLabel1.setText("CHECK-IN");
         jLabel1.setToolTipText("");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 450, 50));
 
-        InputNombre.addActionListener(new java.awt.event.ActionListener() {
+        InputCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputNombreActionPerformed(evt);
+                InputCedulaActionPerformed(evt);
             }
         });
-        getContentPane().add(InputNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 360, 30));
+        getContentPane().add(InputCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 360, 30));
 
         jLabel3.setBackground(new java.awt.Color(222, 222, 222));
         jLabel3.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
-        jLabel3.setText("INGRESE EL NOMBRE Y APELLIDO DEL HUÉSPED:");
+        jLabel3.setText("INGRESE LA CÉDULA DEL HUÉSPED:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 340, 30));
 
         BackToMenu.setText("Volver");
@@ -96,14 +100,14 @@ public class CheckIn extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void InputNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputNombreActionPerformed
+    private void InputCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCedulaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InputNombreActionPerformed
+    }//GEN-LAST:event_InputCedulaActionPerformed
 
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        Menu menu = new Menu(Estado, Reserva, Historico);
+        Menu menu = new Menu(Estado, Reserva, Historico, list_habitaciones);
         menu.setVisible(true);
         this.dispose();
 
@@ -111,41 +115,51 @@ public class CheckIn extends javax.swing.JFrame {
 
     private void SearchHistoryRoomClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchHistoryRoomClientActionPerformed
         // TODO add your handling code here:
-        String input = InputNombre.getText();
+        String input = InputCedula.getText().replace(".", "");
         
         if(input.equals("")){
-            JOptionPane.showMessageDialog(null, "Introduzca el nombre y apellido del huésped");
+            JOptionPane.showMessageDialog(null, "Introduzca la cédula del huésped");
             return;
-        } 
+        } else {
+            try {
+                int cedula = Integer.parseInt(input);
+                Reserva r = Reserva.buscar(cedula);
+                if(r == null){
+                    JOptionPane.showMessageDialog(null, "Este huésped no tiene una reservación o ya entro a las instalaciones!");
+                } else {
+                    int opcion = JOptionPane.showConfirmDialog(null, "¿Desea continuar con el proceso?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                   
+                        if (opcion == JOptionPane.YES_OPTION) {
+                           int num_hab = list_habitaciones.buscar_habitacion(r.getTipo_habitacion());
+            
+                            Estado e = new Estado(num_hab, r.getNombre(), r.getApellido(), r.getEmail(), r.getGender(), r.getCelular(), r.getLlegada());
+                            e.setCedula(cedula);
+                            list_habitaciones.actualizarestadoHab(num_hab, e);
+                            int index = Estado.hashFunction(e);
+                            Estado.insertCliente(e, index);
+                            Reserva.eliminar(cedula);
+            
+                            JOptionPane.showMessageDialog(null, "Check-In Exitoso: \nAl huesped se le ha asignado la habitación número " + num_hab);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Check-In Cancelado!");
+                        }
+                    
+                }   
+                
+            } catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error! Ingrese solo valores numericos!");
+            }
         
-        String[] arrInput = input.split(" ");
-
-        if(arrInput.length < 2){
-            JOptionPane.showMessageDialog(null, "Introduzca el nombre y apellido del huésped!");
-            return;
         }
-
-        String nombre = arrInput[0];
-        String apellido = arrInput[1];
-
-        Estado e = Estado.getEstado(nombre, apellido);
-        if(e == null){
-            JOptionPane.showMessageDialog(null, "Este huésped no se encuentra registrado!");
-        } else if(e.getCheckedIn() == false && e.getCheckedOut() == false) {
-            e.checkIn();
-            JOptionPane.showMessageDialog(null, "Este huésped hizo check in en la habitación " + e.getNum_habitacion());
-        } else if(e.getCheckedIn() == true && e.getCheckedOut() == false) {
-            JOptionPane.showMessageDialog(null, "Este cliente ya hizo su check in!");
-        }  else {
-            JOptionPane.showMessageDialog(null, "Este huésped no se encuentra registrado!");
-        }
+        
+        
     }//GEN-LAST:event_SearchHistoryRoomClientActionPerformed
 
-    public BinarySearchTree getArbol() {
+    public AVL_Historico getArbol() {
         return Historico;
     }
 
-    public void setArbol(BinarySearchTree arbol) {
+    public void setArbol(AVL_Historico arbol) {
         this.Historico = arbol;
     }
     
@@ -178,6 +192,10 @@ public class CheckIn extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -189,7 +207,7 @@ public class CheckIn extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackToMenu;
-    private javax.swing.JTextField InputNombre;
+    private javax.swing.JTextField InputCedula;
     private javax.swing.JButton SearchHistoryRoomClient;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

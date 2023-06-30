@@ -4,60 +4,28 @@
  */
 package Ventanas;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
 import javax.swing.JOptionPane;
-import proyecto2_carrero_sisiruca_machta.ABB_Reserva;
-import proyecto2_carrero_sisiruca_machta.BinarySearchTree;
+import proyecto2_carrero_sisiruca_machta.AVL_Reserva;
+import proyecto2_carrero_sisiruca_machta.AVL_Historico;
 import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
-import proyecto2_carrero_sisiruca_machta.Historic;
+
+import proyecto2_carrero_sisiruca_machta.ListaHabitacion;
 
 
-public class SearchRoomHistory extends javax.swing.JFrame {
-    private HashTableEstadoActual Estado;
-    private ABB_Reserva Reserva;
-    private BinarySearchTree Historico;
-    
-    public SearchRoomHistory() {
-        initComponents();
-        setLocationRelativeTo(null);
-    }
-      
-    public SearchRoomHistory(HashTableEstadoActual Estado, ABB_Reserva Reserva, BinarySearchTree Historico) {
+public class MenuHistorico extends javax.swing.JFrame {
+    static AVL_Historico Historico;
+    static HashTableEstadoActual Estado;
+    static AVL_Reserva Reserva;
+    static ListaHabitacion list_habitaciones;
+    public MenuHistorico(HashTableEstadoActual Estado, AVL_Reserva Reserva, AVL_Historico Historico, ListaHabitacion list_habitaciones) {
         initComponents();
         this.Estado = Estado;
         this.Reserva = Reserva;
         this.Historico = Historico;
+        this.list_habitaciones = list_habitaciones;
         setLocationRelativeTo(null);
 
-        // Crear el árbol binario de búsqueda
-       // arbol = new BinarySearchTree();
-
-        // Leer el archivo de texto y agregar los clientes al árbol
-//           try {
-//           InputStream inputStream = SearchRoomHistory.class.getResourceAsStream("test\\habitaciones.txt");
-//            try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
-//                String linea;
-//                
-//                while ((linea = br.readLine()) != null) {
-//                    String[] datos = linea.split(",");
-//                    String dni = datos[0].trim();
-//                    String firstName = datos[1].trim();
-//                    String lastName = datos[2].trim();
-//                    String email = datos[3].trim();
-//                    String gender = datos[4].trim();
-//                    String checkIn = datos[5].trim();
-//                    int roomNumber = Integer.parseInt(datos[6].trim());
-//                    
-//                    Historic cliente = new Historic(dni, firstName, lastName, email, gender, checkIn, roomNumber);
-//                    arbol.insertar(cliente);
-//                }
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,13 +57,12 @@ public class SearchRoomHistory extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Elephant", 1, 19)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setBackground(new java.awt.Color(222, 222, 222));
+        jLabel1.setFont(new java.awt.Font("Elephant", 0, 19)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("BUSCAR HISTORIAL DE HABITACIÓN");
         jLabel1.setToolTipText("");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 450, 50));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 450, 50));
 
         InputRoom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,9 +71,8 @@ public class SearchRoomHistory extends javax.swing.JFrame {
         });
         getContentPane().add(InputRoom, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 140, 30));
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setBackground(new java.awt.Color(222, 222, 222));
         jLabel3.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("INGRESE EL NUMERO DE HABITACIÓN ");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 250, 30));
 
@@ -145,7 +111,7 @@ public class SearchRoomHistory extends javax.swing.JFrame {
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        Menu menu = new Menu(Estado, Reserva, Historico);
+        Menu menu = new Menu(Estado, Reserva, Historico, list_habitaciones);
         menu.setVisible(true);
         this.dispose();
 
@@ -169,12 +135,12 @@ public class SearchRoomHistory extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SearchHistoryRoomClientActionPerformed
 
-    public BinarySearchTree getArbol() {
+    public AVL_Historico getHistorico() {
         return Historico;
     }
 
-    public void setArbol(BinarySearchTree arbol) {
-        this.Historico = arbol;
+    public void setHistorico(AVL_Historico Historico) {
+        this.Historico = Historico;
     }
     
     /**
@@ -194,21 +160,23 @@ public class SearchRoomHistory extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SearchRoomHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuHistorico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SearchRoomHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuHistorico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SearchRoomHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuHistorico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SearchRoomHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuHistorico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SearchRoomHistory().setVisible(true);
+                new MenuHistorico(Estado, Reserva, Historico, list_habitaciones).setVisible(true);
             }
         });
     }

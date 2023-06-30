@@ -16,25 +16,25 @@ import javax.swing.JOptionPane;
  *
  * @author sisir
  */
-public class BinarySearchTree {
-    private NodoTree raiz;
+public class AVL_Historico {
+    private NodoHistorico raiz;
 
-    public BinarySearchTree() {
+    public AVL_Historico() {
         this.raiz = null;
     }
 
-    public NodoTree getRaiz() {
+    public NodoHistorico getRaiz() {
         return raiz;
     }
 
-    public void insertar(Historic dato) {
-        NodoTree nuevoNodo = new NodoTree(dato);
+    public void insertar(Historico dato) {
+        NodoHistorico nuevoNodo = new NodoHistorico(dato);
 
         if (raiz == null) {
             raiz = nuevoNodo;
         } else {
-            NodoTree nodoActual = raiz;
-            NodoTree padre;
+            NodoHistorico nodoActual = raiz;
+            NodoHistorico padre;
 
             while (true) {
                 padre = nodoActual;
@@ -60,12 +60,12 @@ public class BinarySearchTree {
 
     public String printHistoryRoom(int numHabitacion) {
         String str = "";
-        NodoTree nodoClient = raiz;
+        NodoHistorico nodoClient = raiz;
         int count = 0;
 
         while (nodoClient != null) {
             if (nodoClient.getCliente().getRoomNumber() == numHabitacion) {
-                Historic pointer = nodoClient.getCliente();
+                Historico pointer = nodoClient.getCliente();
                 while (pointer != null){
                 count ++;
                 str += "\nCliente n."+count+"\n";
@@ -74,7 +74,7 @@ public class BinarySearchTree {
                 str += "Email: " + pointer.getEmail() +"\n";
                 str += "Genero: " + pointer.getGender()+"\n";
                 str += "Fecha de llegada: "+ pointer.getCheckIn()+"\n";
-                pointer = (Historic) pointer.getNext();
+                pointer = (Historico) pointer.getNext();
                 }
             }
 
@@ -87,8 +87,8 @@ public class BinarySearchTree {
         return str;
     }
     
-    public Historic buscar(int num_hab) {
-        NodoTree nodoActual = raiz;
+    public Historico buscar(int num_hab) {
+        NodoHistorico nodoActual = raiz;
         
         while (nodoActual != null) {
             if (num_hab < nodoActual.getCliente().getRoomNumber()) {
@@ -103,7 +103,7 @@ public class BinarySearchTree {
     }
     
     public void initABB_Historial(){
-        ABB_Reserva Reservas = new ABB_Reserva();
+        AVL_Reserva Reservas = new AVL_Reserva();
         String line;
         String historico_txt = "";
         String path = "test\\historial.txt";
@@ -131,11 +131,11 @@ public class BinarySearchTree {
                     String checkIn = Cliente[5];
                     int roomNumber = Integer.parseInt(Cliente[6].trim());
                     
-                    Historic cliente = new Historic(dni, firstName, lastName, email, gender, checkIn, roomNumber);
+                    Historico cliente = new Historico(dni, firstName, lastName, email, gender, checkIn, roomNumber);
                     if (buscar(roomNumber) != null){
-                        Historic C_anterior = buscar(roomNumber);
+                        Historico C_anterior = buscar(roomNumber);
                         while (C_anterior.getNext() != null){
-                            C_anterior = (Historic) C_anterior.getNext();
+                            C_anterior = (Historico) C_anterior.getNext();
                         }
                         C_anterior.setNext(cliente);
                     } else {
@@ -152,13 +152,13 @@ public class BinarySearchTree {
         }
     }
     
-    public void agregar(Historic historico){
+    public void agregar(Historico historico){
         this.raiz = agregarRec(raiz, historico);
     }
     
-    private NodoTree agregarRec(NodoTree nodo, Historic cliente_historico) {
+    private NodoHistorico agregarRec(NodoHistorico nodo, Historico cliente_historico) {
         if (nodo == null) {
-            return new NodoTree(cliente_historico);
+            return new NodoHistorico(cliente_historico);
         } else if (cliente_historico.getRoomNumber() < nodo.getCliente().getRoomNumber()) {
             nodo.setIzquierdo(agregarRec(nodo.getIzquierdo(), cliente_historico));
         } else {
@@ -191,8 +191,8 @@ public class BinarySearchTree {
         return nodo;
     }
     
-    private NodoTree rotacionIzquierda(NodoTree nodo) {
-        NodoTree nuevoNodo = nodo.getDerecho();
+    private NodoHistorico rotacionIzquierda(NodoHistorico nodo) {
+        NodoHistorico nuevoNodo = nodo.getDerecho();
         nodo.setDerecho(nuevoNodo.getIzquierdo());
         nuevoNodo.setIzquierdo(nodo);
         
@@ -204,8 +204,8 @@ public class BinarySearchTree {
         return nuevoNodo;
     }
     
-    private NodoTree rotacionDerecha(NodoTree nodo) {
-        NodoTree nuevoNodo = nodo.getIzquierdo();
+    private NodoHistorico rotacionDerecha(NodoHistorico nodo) {
+        NodoHistorico nuevoNodo = nodo.getIzquierdo();
         nodo.setIzquierdo(nuevoNodo.getDerecho());
         nuevoNodo.setDerecho(nodo);
         

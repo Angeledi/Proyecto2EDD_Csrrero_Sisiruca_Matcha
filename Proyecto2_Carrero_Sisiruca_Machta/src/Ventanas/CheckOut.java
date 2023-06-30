@@ -5,27 +5,30 @@
 package Ventanas;
 
 import javax.swing.JOptionPane;
-import proyecto2_carrero_sisiruca_machta.Historic;
+import proyecto2_carrero_sisiruca_machta.Historico;
 import proyecto2_carrero_sisiruca_machta.Estado;
-import proyecto2_carrero_sisiruca_machta.ABB_Reserva;
-import proyecto2_carrero_sisiruca_machta.BinarySearchTree;
+import proyecto2_carrero_sisiruca_machta.AVL_Reserva;
+import proyecto2_carrero_sisiruca_machta.AVL_Historico;
 import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
+import proyecto2_carrero_sisiruca_machta.ListaHabitacion;
 
 public class CheckOut extends javax.swing.JFrame {
     private HashTableEstadoActual Estado;
-    private ABB_Reserva Reserva;
-    private BinarySearchTree Historico;
+    private AVL_Reserva Reserva;
+    private AVL_Historico Historico;
+    private ListaHabitacion Habitaciones;
     
     public CheckOut() {
         initComponents();
         setLocationRelativeTo(null);
     }
     
-    public CheckOut(HashTableEstadoActual Estado, ABB_Reserva Reserva, BinarySearchTree Historico) {
+    public CheckOut(HashTableEstadoActual Estado, AVL_Reserva Reserva, AVL_Historico Historico, ListaHabitacion Habitaciones) {
         initComponents();
         this.Estado = Estado;
         this.Reserva = Reserva;
         this.Historico = Historico;
+        this.Habitaciones = Habitaciones;
         setLocationRelativeTo(null);
     }
     /**
@@ -41,7 +44,10 @@ public class CheckOut extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         InputNombre = new javax.swing.JTextField();
+        InputApellido = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         BackToMenu = new javax.swing.JButton();
         SearchHistoryRoomClient = new javax.swing.JButton();
@@ -59,21 +65,38 @@ public class CheckOut extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(222, 222, 222));
         jLabel1.setFont(new java.awt.Font("Elephant", 0, 19)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Check Out");
+        jLabel1.setText("CHECK-OUT");
         jLabel1.setToolTipText("");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 450, 50));
+
+        jLabel4.setBackground(new java.awt.Color(222, 222, 222));
+        jLabel4.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel4.setText("APELLIDO:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 70, 30));
+
+        jLabel5.setBackground(new java.awt.Color(222, 222, 222));
+        jLabel5.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel5.setText("NOMBRE:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 70, 30));
 
         InputNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InputNombreActionPerformed(evt);
             }
         });
-        getContentPane().add(InputNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 360, 30));
+        getContentPane().add(InputNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 140, 30));
+
+        InputApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputApellidoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(InputApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 140, 30));
 
         jLabel3.setBackground(new java.awt.Color(222, 222, 222));
         jLabel3.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
-        jLabel3.setText("INGRESE EL NOMBRE Y APELLIDO DEL HUÉSPED:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 340, 30));
+        jLabel3.setText("INGRESE EL NOMBRE Y APELLIDO DEL HUÉSPED Y TERMINAR SU ESTADIA:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 480, 30));
 
         BackToMenu.setText("Volver");
         BackToMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -97,55 +120,62 @@ public class CheckOut extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void InputNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputNombreActionPerformed
+    private void InputApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputApellidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InputNombreActionPerformed
+    }//GEN-LAST:event_InputApellidoActionPerformed
 
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        Menu menu = new Menu(Estado, Reserva, Historico);
+        Menu menu = new Menu(Estado, Reserva, Historico, Habitaciones);
         menu.setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_BackToMenuActionPerformed
 
     private void SearchHistoryRoomClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchHistoryRoomClientActionPerformed
-        // TODO add your handling code here:
-        String input = InputNombre.getText();
         
-        if(input.equals("")){
-            JOptionPane.showMessageDialog(null, "Introduzca el nombre y apellido del huésped");
-            return;
-        } 
-        
-        String[] arrInput = input.split(" ");
-
-        if(arrInput.length < 2){
-            JOptionPane.showMessageDialog(null, "Introduzca el nombre y apellido del huésped!");
-            return;
-        }
-
-        String nombre = arrInput[0];
-        String apellido = arrInput[1];
-
-        Estado e = Estado.getEstado(nombre, apellido);
+        String nombre = InputNombre.getText();
+        String apellido = InputApellido.getText();
+        if(!"".equals(nombre) & !"".equals(apellido)){
+            
+            Estado e = Estado.getEstado(nombre, apellido);
+            
         if(e == null){
             JOptionPane.showMessageDialog(null, "Este huésped no se encuentra registrado!");
-        } else if(e.getCheckedIn() == true && e.getCheckedOut() == false) {
-            e.checkOut();
-            Historico.insertar(new Historic("No disponible", e.getNombre(), e.getApellido(), e.getEmail(), e.getGender(), "No disponible", e.getNum_habitacion()));
-            JOptionPane.showMessageDialog(null, "La habitación " + e.getNum_habitacion()+ " ahora se encuentra disponible");
         } else {
-            JOptionPane.showMessageDialog(null, "Este huésped no se encuentra registrado!");
+            String str;
+            if (e.getCedula() == -1) {
+                str = "No disponible, no hizo reservacion.";
+            } else {
+                str = Integer.toString(e.getCedula());
+            }
+            e.llegadatoString();
+            
+            Historico h = new Historico(str, e.getNombre(), e.getApellido(), e.getEmail(), e.getGender(), e.llegadatoString(), e.getNum_habitacion());
+            
+            Historico.insertar(h);  
+            Estado.borrar_Estado(nombre, apellido);
+            Habitaciones.desocuparHabitacion(e.getNum_habitacion());
+            JOptionPane.showMessageDialog(null, "El Cliente ha dejado las instalaciones:\n"+"Nombre: "+e.getNombre()+" "+e.getApellido()+"\n"+"Cedula: " + str+"\nEmail: "+ e.getEmail()+"\nGenero: "+e.getGender()+"\nLlegada: "+ e.llegadatoString());
+            JOptionPane.showMessageDialog(null, "La habitación " + e.getNum_habitacion()+ " ahora se encuentra disponible");
         }
+            
+        } else{
+            JOptionPane.showMessageDialog(null, "Introduzca el nombre y apellido del huésped en los campos");
+        }
+        
     }//GEN-LAST:event_SearchHistoryRoomClientActionPerformed
 
-    public BinarySearchTree getArbol() {
+    private void InputNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputNombreActionPerformed
+
+    public AVL_Historico getArbol() {
         return Historico;
     }
 
-    public void setArbol(BinarySearchTree arbol) {
+    public void setArbol(AVL_Historico arbol) {
         this.Historico = arbol;
     }
     
@@ -182,6 +212,14 @@ public class CheckOut extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -193,11 +231,14 @@ public class CheckOut extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackToMenu;
+    private javax.swing.JTextField InputApellido;
     private javax.swing.JTextField InputNombre;
     private javax.swing.JButton SearchHistoryRoomClient;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

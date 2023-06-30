@@ -15,31 +15,32 @@ import javax.swing.JOptionPane;
  * @author acarr
  */
 public class ListaHabitacion {
-    private Habitacion headpiso1;
-    private Habitacion headpiso2;
-    private Habitacion headpiso3;
-    private Habitacion headpiso4;
-    private Habitacion headpiso5;
-    private Habitacion headpiso6;
-    private Habitacion headpiso7;
-    private Habitacion headpiso8;
-    private Habitacion headpiso9;
-    private Habitacion headpiso10;
+    private Habitacion headpiso;
+  
     private int num_habitaciones;
     
     public ListaHabitacion(){
-        this.headpiso1 = null;
-        this.headpiso2 = null;
-        this.headpiso3 = null;
-        this.headpiso4 = null;
-        this.headpiso5 = null;
-        this.headpiso6 = null;
-        this.headpiso7 = null;
-        this.headpiso8 = null;
-        this.headpiso9 = null;
-        this.headpiso10 = null;
+        this.headpiso = null;
         this.num_habitaciones = 0;
     }
+
+    public Habitacion getHeadpiso() {
+        return headpiso;
+    }
+
+    public void setHeadpiso(Habitacion headpiso) {
+        this.headpiso = headpiso;
+    }
+
+    public int getNum_habitaciones() {
+        return num_habitaciones;
+    }
+
+    public void setNum_habitaciones(int num_habitaciones) {
+        this.num_habitaciones = num_habitaciones;
+    }
+    
+    
     
     public void initlistaHabitaciones(){
         String line;
@@ -63,23 +64,11 @@ public class ListaHabitacion {
                         
                         int num = Integer.parseInt(habitacion[0]);
                         String tipo_habitacion = habitacion[1];
-                        String piso = habitacion[2];
+                        int piso = Integer.parseInt(habitacion[2]);
                         
-                       // Habitacion nueva_habitacion = new Habitacion(num, tipo_habi);
+                        Habitacion nueva_habitacion = new Habitacion(num, tipo_habitacion, piso);
+                        agregar_habitacion(nueva_habitacion);
                         
-                        String email = habitacion[3];
-                        String genero = habitacion[4];
-                        String tipo_hab = habitacion[5];
-                        String celular = habitacion[6];
-                        String[] llegada_aux = habitacion[7].split("/");
-                        int[] llegada = new int[]{Integer.parseInt(llegada_aux[0]),Integer.parseInt(llegada_aux[1]),Integer.parseInt(llegada_aux[2])};
-                        String[] salida_aux = habitacion[8].split("/");
-                        int[] salida = new int[]{Integer.parseInt(salida_aux[0]),Integer.parseInt(salida_aux[1]),Integer.parseInt(salida_aux[2])};
-         
-                    //    Reserva nuevo_cliente = new Reserva(cedula, primer_nombre, apellido, email, genero, tipo_hab, celular, llegada, salida);
-                       
-                      //  nuevo_cliente.printCliente();
-                     //   agregar(nuevo_cliente);
 
                 }               
             }
@@ -87,5 +76,79 @@ public class ListaHabitacion {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar base de Datos");
         }
+        
+        
+    }
+    
+    public void agregar_habitacion(Habitacion valor) {
+        if (headpiso == null) {
+            headpiso = valor;
+        } else {
+            Habitacion pointer = getHeadpiso();
+            while (pointer.getNext() != null) {
+                pointer = pointer.getNext();
+            }
+            pointer.setNext(valor);
+        }
+    }
+    
+    public void add_client_to_hab(HashTableEstadoActual estado){
+        Habitacion pointer = getHeadpiso();
+        while (pointer != null) {
+            for (int i =0; i < estado.getSize() ; i++){
+                if (estado.getArray_reservas()[i] != null){
+                    Estado pointer2 = estado.getArray_reservas()[i];
+                    while (pointer2 != null) {
+                        int num = pointer2.getNum_habitacion();
+                        if (pointer2.getNum_habitacion() == pointer.getNum()){
+                            pointer.setCliente_actual(pointer2);
+                        }
+                        pointer2 = pointer2.getNext();
+                    }
+                }
+            }
+            pointer = pointer.getNext();
+        }
+    }
+    
+    public int buscar_habitacion(String tipo_hab){
+        Habitacion pointer = getHeadpiso();
+        int new_hab = 0;
+        while (pointer != null){
+            if (pointer.getCliente_actual() == null & pointer.getTipo().equals(tipo_hab)){
+                new_hab = pointer.getNum();
+                return new_hab;
+            }
+            pointer = pointer.getNext();
+        }
+        
+        
+        return new_hab;
+    }
+        
+    public void actualizarestadoHab(int numero_hab, Estado cliente_actual){
+        Habitacion pointer = getHeadpiso();
+        
+        while (pointer != null){
+            if (pointer.getNum() == numero_hab){
+                pointer.setCliente_actual(cliente_actual);
+               
+            }
+            pointer = pointer.getNext();
+        }
+         
+    }
+    
+    public void desocuparHabitacion(int numero_hab){
+        Habitacion pointer = getHeadpiso();
+        
+        while (pointer != null){
+            if (pointer.getNum() == numero_hab){
+                pointer.setCliente_actual(null);
+               
+            }
+            pointer = pointer.getNext();
+        }
+         
     }
 }

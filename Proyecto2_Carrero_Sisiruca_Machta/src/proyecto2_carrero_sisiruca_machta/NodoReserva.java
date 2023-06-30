@@ -9,13 +9,13 @@ package proyecto2_carrero_sisiruca_machta;
  *
  * @author acarr
  */
-public class Nodo {
+public class NodoReserva {
     private Reserva reservacion;
-    private Nodo izquierdo;
-    private Nodo derecho;
+    private NodoReserva izquierdo;
+    private NodoReserva derecho;
     private int altura;
     
-    public Nodo(Reserva reservacion) {
+    public NodoReserva(Reserva reservacion) {
         this.reservacion = reservacion;
         this.izquierdo = null;
         this.derecho = null;
@@ -26,19 +26,23 @@ public class Nodo {
         return reservacion;
     }
     
-    public Nodo getIzquierdo() {
+    public Reserva setReserva(Reserva nueva) {
+        return this.reservacion = nueva;
+    }
+    
+    public NodoReserva getIzquierdo() {
         return izquierdo;
     }
     
-    public void setIzquierdo(Nodo izquierdo) {
+    public void setIzquierdo(NodoReserva izquierdo) {
         this.izquierdo = izquierdo;
     }
     
-    public Nodo getDerecho() {
+    public NodoReserva getDerecho() {
         return derecho;
     }
     
-    public void setDerecho(Nodo derecho) {
+    public void setDerecho(NodoReserva derecho) {
         this.derecho = derecho;
     }
     

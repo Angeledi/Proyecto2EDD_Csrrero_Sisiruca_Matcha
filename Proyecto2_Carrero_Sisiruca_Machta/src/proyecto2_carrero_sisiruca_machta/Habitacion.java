@@ -14,7 +14,7 @@ public class Habitacion {
     private String tipo;
     private int piso;
     private Estado cliente_actual;
-    private Historico historial;
+    private Habitacion next;
     
     
     public Habitacion(int num, String tipo, int piso){
@@ -22,7 +22,8 @@ public class Habitacion {
         this.tipo = tipo;
         this.piso = piso;
         this.cliente_actual = null;
-        this.historial = null;
+        this.next = null;
+ 
     }
 
     public int getNum() {
@@ -57,13 +58,14 @@ public class Habitacion {
         this.cliente_actual = cliente_actual;
     }
 
-    public Historico getHistorial() {
-        return historial;
+    public Habitacion getNext() {
+        return next;
     }
 
-    public void setHistorial(Historico historial) {
-        this.historial = historial;
+    public void setNext(Habitacion next) {
+        this.next = next;
     }
+    
     
     
     

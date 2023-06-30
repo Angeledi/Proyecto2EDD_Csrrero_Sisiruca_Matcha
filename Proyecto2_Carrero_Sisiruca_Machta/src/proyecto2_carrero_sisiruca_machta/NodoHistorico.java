@@ -8,14 +8,14 @@ package proyecto2_carrero_sisiruca_machta;
  *
  * @author sisir
  */
-public class NodoTree {
-    private Historic cliente;
-    private NodoTree izquierdo;
-    private NodoTree derecho;
+public class NodoHistorico {
+    private Historico cliente;
+    private NodoHistorico izquierdo;
+    private NodoHistorico derecho;
     private int altura;
   
 
-    public NodoTree(Historic cliente) {
+    public NodoHistorico(Historico cliente) {
         this.cliente = cliente;
         this.izquierdo = null;
         this.derecho = null;
@@ -33,27 +33,27 @@ public class NodoTree {
     }
     
 
-    public Historic getCliente() {
+    public Historico getCliente() {
         return cliente;
     }
 
-    public void setCliente(Historic cliente) {
+    public void setCliente(Historico cliente) {
         this.cliente = cliente;
     }
 
-    public NodoTree getIzquierdo() {
+    public NodoHistorico getIzquierdo() {
         return izquierdo;
     }
 
-    public void setIzquierdo(NodoTree izquierdo) {
+    public void setIzquierdo(NodoHistorico izquierdo) {
         this.izquierdo = izquierdo;
     }
 
-    public NodoTree getDerecho() {
+    public NodoHistorico getDerecho() {
         return derecho;
     }
 
-    public void setDerecho(NodoTree derecho) {
+    public void setDerecho(NodoHistorico derecho) {
         this.derecho = derecho;
     }
     

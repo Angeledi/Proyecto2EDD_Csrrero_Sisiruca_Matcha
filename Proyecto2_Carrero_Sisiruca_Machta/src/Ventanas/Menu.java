@@ -4,35 +4,31 @@
  */
 package Ventanas;
 
-import proyecto2_carrero_sisiruca_machta.ABB_Reserva;
-import proyecto2_carrero_sisiruca_machta.BinarySearchTree;
+import proyecto2_carrero_sisiruca_machta.AVL_Reserva;
+import proyecto2_carrero_sisiruca_machta.AVL_Historico;
 import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
+import proyecto2_carrero_sisiruca_machta.ListaHabitacion;
 
 /**
  *
  * @author sisir
  */
 public class Menu extends javax.swing.JFrame {
-    private HashTableEstadoActual Estado;
-    private ABB_Reserva Reserva;
-    private BinarySearchTree Historico;
+    static HashTableEstadoActual Estado;
+    static AVL_Reserva Reserva;
+    static AVL_Historico Historico;
+    static ListaHabitacion list_habitaciones;
     /**
      * Creates new form Menu
      */
-    public Menu() {
-        initComponents();
-        this.Estado = null;
-        this.Reserva = null;
-        this.Historico = null;
-        this.setLocationRelativeTo(null); // Se utiliza para centrar la pantalla
-    }
-    
-    public Menu(HashTableEstadoActual Estado, ABB_Reserva Reserva, BinarySearchTree Historico) {
+    public Menu(HashTableEstadoActual Estado, AVL_Reserva Reserva, AVL_Historico Historico, ListaHabitacion list_habitaciones) {
         initComponents();
         this.Estado = Estado;
         this.Reserva = Reserva;
         this.Historico = Historico;
-        setLocationRelativeTo(null);
+        this.list_habitaciones = list_habitaciones;
+
+        this.setLocationRelativeTo(null); // Se utiliza para centrar la pantalla
     }
 
     /**
@@ -44,19 +40,37 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Logo = new javax.swing.JPanel();
         RegistrarUsuario = new javax.swing.JButton();
         BuscarReservación = new javax.swing.JButton();
         HistorialHabitación = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        javax.swing.GroupLayout LogoLayout = new javax.swing.GroupLayout(Logo);
+        Logo.setLayout(LogoLayout);
+        LogoLayout.setHorizontalGroup(
+            LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 240, Short.MAX_VALUE)
+        );
+        LogoLayout.setVerticalGroup(
+            LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 170, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 240, 170));
+
         RegistrarUsuario.setText("Registrar Usuario");
-        getContentPane().add(RegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
+        RegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarUsuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(RegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
         BuscarReservación.setText("Buscar Reservación");
         BuscarReservación.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +78,7 @@ public class Menu extends javax.swing.JFrame {
                 BuscarReservaciónActionPerformed(evt);
             }
         });
-        getContentPane().add(BuscarReservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
+        getContentPane().add(BuscarReservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 140, -1));
 
         HistorialHabitación.setText(" Historial de Habitación  ");
         HistorialHabitación.addActionListener(new java.awt.event.ActionListener() {
@@ -72,9 +86,9 @@ public class Menu extends javax.swing.JFrame {
                 HistorialHabitaciónActionPerformed(evt);
             }
         });
-        getContentPane().add(HistorialHabitación, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, -1, -1));
+        getContentPane().add(HistorialHabitación, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 160, -1));
 
-        jButton4.setText("Comenzar Estadía");
+        jButton4.setText("Check-in");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -82,16 +96,13 @@ public class Menu extends javax.swing.JFrame {
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
 
-        jButton5.setText("Terminar Estadía");
+        jButton5.setText("Check-out");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, -1, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 290, 190));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 390));
@@ -100,31 +111,67 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BuscarReservaciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarReservaciónActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        MenuReserva windowReserva = new MenuReserva(Estado, Reserva, Historico, list_habitaciones);
+        windowReserva.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BuscarReservaciónActionPerformed
 
     private void HistorialHabitaciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialHabitaciónActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        SearchRoomHistory windowHistoric = new SearchRoomHistory(Estado, Reserva, Historico);
+        MenuHistorico windowHistoric = new MenuHistorico(Estado, Reserva, Historico, list_habitaciones);
         windowHistoric.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_HistorialHabitaciónActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.setVisible(false);
-        CheckIn windowCheckIn = new CheckIn(Estado, Reserva, Historico);
-        windowCheckIn.setVisible(true);
+        CheckIn checkin = new CheckIn(Estado, Reserva, Historico, list_habitaciones);
+        checkin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         this.setVisible(false);
-        CheckOut windowCheckOut = new CheckOut(Estado, Reserva, Historico);
-        windowCheckOut.setVisible(true);
+        CheckOut checkout = new CheckOut(Estado, Reserva, Historico, list_habitaciones);
+        checkout.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void RegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarUsuarioActionPerformed
+        this.setVisible(false);
+        MenuEstado windowEstado = new MenuEstado(Estado, Reserva, Historico, list_habitaciones);
+        windowEstado.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_RegistrarUsuarioActionPerformed
+
+    public HashTableEstadoActual getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(HashTableEstadoActual Estado) {
+        this.Estado = Estado;
+    }
+
+    public AVL_Reserva getReserva() {
+        return Reserva;
+    }
+
+    public void setReserva(AVL_Reserva Reserva) {
+        this.Reserva = Reserva;
+    }
+
+    public AVL_Historico getHistorico() {
+        return Historico;
+    }
+
+    public void setHistorico(AVL_Historico Historico) {
+        this.Historico = Historico;
+    }
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -156,7 +203,9 @@ public class Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+                new Menu(Estado, Reserva, Historico, list_habitaciones).setVisible(true);
+                Imagen im = new Imagen(Logo);
+                Logo.add(im).repaint();
             }
         });
     }
@@ -165,23 +214,27 @@ public class Menu extends javax.swing.JFrame {
     e.initHashTableEstado();
     this.Estado = e;
     
-    ABB_Reserva r = new ABB_Reserva();
+    AVL_Reserva r = new AVL_Reserva();
     r.initABB_Reserva();
     this.Reserva = r;
     
-    BinarySearchTree h = new BinarySearchTree();
+    AVL_Historico h = new AVL_Historico();
     h.initABB_Historial();
     this.Historico = h;
     
+    ListaHabitacion l = new ListaHabitacion();
+    l.initlistaHabitaciones();
+    l.add_client_to_hab(Estado);
+    this.list_habitaciones = l;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BuscarReservación;
     private javax.swing.JLabel Fondo;
     private javax.swing.JButton HistorialHabitación;
+    private static javax.swing.JPanel Logo;
     private javax.swing.JButton RegistrarUsuario;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
