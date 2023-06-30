@@ -60,23 +60,25 @@ public class CheckIn extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(222, 222, 222));
-        jLabel1.setFont(new java.awt.Font("Elephant", 0, 19)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Elephant", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CHECK-IN");
         jLabel1.setToolTipText("");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 450, 50));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 430, 50));
 
         InputCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InputCedulaActionPerformed(evt);
             }
         });
-        getContentPane().add(InputCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 360, 30));
+        getContentPane().add(InputCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 360, 30));
 
         jLabel3.setBackground(new java.awt.Color(222, 222, 222));
         jLabel3.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("INGRESE LA CÉDULA DEL HUÉSPED:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 340, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 340, 30));
 
         BackToMenu.setText("Volver");
         BackToMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +86,7 @@ public class CheckIn extends javax.swing.JFrame {
                 BackToMenuActionPerformed(evt);
             }
         });
-        getContentPane().add(BackToMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, -1));
+        getContentPane().add(BackToMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 80, 30));
 
         SearchHistoryRoomClient.setText("Realizar");
         SearchHistoryRoomClient.addActionListener(new java.awt.event.ActionListener() {
@@ -92,10 +94,10 @@ public class CheckIn extends javax.swing.JFrame {
                 SearchHistoryRoomClientActionPerformed(evt);
             }
         });
-        getContentPane().add(SearchHistoryRoomClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, -1, -1));
+        getContentPane().add(SearchHistoryRoomClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 90, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 320));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 280));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -136,7 +138,7 @@ public class CheckIn extends javax.swing.JFrame {
                             e.setCedula(cedula);
                             list_habitaciones.actualizarestadoHab(num_hab, e);
                             int index = Estado.hashFunction(e);
-                            Estado.insertCliente(e, index);
+                            Estado.insertEstado(e, index);
                             Reserva.eliminar(cedula);
             
                             JOptionPane.showMessageDialog(null, "Check-In Exitoso: \nAl huesped se le ha asignado la habitación número " + num_hab);

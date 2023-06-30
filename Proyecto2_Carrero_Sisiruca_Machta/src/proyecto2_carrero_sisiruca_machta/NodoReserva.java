@@ -9,6 +9,7 @@ package proyecto2_carrero_sisiruca_machta;
  *
  * @author acarr
  */
+//Nodo con tipo de dato Reserva del AVL_Reserva
 public class NodoReserva {
     private Reserva reservacion;
     private NodoReserva izquierdo;

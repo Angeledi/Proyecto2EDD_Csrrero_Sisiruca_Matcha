@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
  *
  * @author acarr
  */
+// es una lista que tiene todas las habitaciones
 public class ListaHabitacion {
     private Habitacion headpiso;
   
@@ -41,7 +42,7 @@ public class ListaHabitacion {
     }
     
     
-    
+    //lector de txt para creaer los obejtos Habitaciones e insertarlos en la lista
     public void initlistaHabitaciones(){
         String line;
         String habitaciones_txt = "";
@@ -79,7 +80,7 @@ public class ListaHabitacion {
         
         
     }
-    
+    //metodo para agregar una habitacion a la lista
     public void agregar_habitacion(Habitacion valor) {
         if (headpiso == null) {
             headpiso = valor;
@@ -91,7 +92,7 @@ public class ListaHabitacion {
             pointer.setNext(valor);
         }
     }
-    
+    // metodo que busca cada elemento Estado en la hastable y le asiga ese cliente con su habitacion a el atributo cliente de Habitacion, dicho de otra forma, busca que habitaciones estan ocupada segun los datos de los clientes de la hashtable y asiga ese cliente a cada habitacion ,de este modo la habitacion sale como coupada en la base de datos
     public void add_client_to_hab(HashTableEstadoActual estado){
         Habitacion pointer = getHeadpiso();
         while (pointer != null) {
@@ -110,7 +111,7 @@ public class ListaHabitacion {
             pointer = pointer.getNext();
         }
     }
-    
+    //Del mismo modo que la anterior busca que habitaciones estan vacias segun el tipo de habitacion que busques, viendo si el atributo cliente es diferente a null(ya que si esta ocupada tiene su objeto Estado por el metodo anteior) y asigna el numeor de la primera habitacion encontrada vacia del tipo que se ingreso
     public int buscar_habitacion(String tipo_hab){
         Habitacion pointer = getHeadpiso();
         int new_hab = 0;
@@ -125,7 +126,7 @@ public class ListaHabitacion {
         
         return new_hab;
     }
-        
+    // esta funcion actualiza el estado de la habitacion de numero ingresada y le asigna su hospedado Estado cliente    
     public void actualizarestadoHab(int numero_hab, Estado cliente_actual){
         Habitacion pointer = getHeadpiso();
         
@@ -138,7 +139,7 @@ public class ListaHabitacion {
         }
          
     }
-    
+    // esta funcion setea a null el atributo cliente del numero de la habitacion ingresada, de esta manera se desocupa la habitacion
     public void desocuparHabitacion(int numero_hab){
         Habitacion pointer = getHeadpiso();
         

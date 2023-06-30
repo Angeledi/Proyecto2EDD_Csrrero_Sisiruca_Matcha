@@ -4,14 +4,18 @@
  */
 package Ventanas;
 
+import java.io.File;
+import java.io.PrintWriter;
+import javax.swing.JOptionPane;
 import proyecto2_carrero_sisiruca_machta.AVL_Reserva;
 import proyecto2_carrero_sisiruca_machta.AVL_Historico;
+import proyecto2_carrero_sisiruca_machta.Estado;
 import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
 import proyecto2_carrero_sisiruca_machta.ListaHabitacion;
 
 /**
  *
- * @author sisir
+ * @author sisir y acarr
  */
 public class Menu extends javax.swing.JFrame {
     static HashTableEstadoActual Estado;
@@ -40,29 +44,17 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Logo = new javax.swing.JPanel();
         RegistrarUsuario = new javax.swing.JButton();
         BuscarReservación = new javax.swing.JButton();
         HistorialHabitación = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        Logo = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        javax.swing.GroupLayout LogoLayout = new javax.swing.GroupLayout(Logo);
-        Logo.setLayout(LogoLayout);
-        LogoLayout.setHorizontalGroup(
-            LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 240, Short.MAX_VALUE)
-        );
-        LogoLayout.setVerticalGroup(
-            LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 170, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 240, 170));
 
         RegistrarUsuario.setText("Registrar Usuario");
         RegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +62,7 @@ public class Menu extends javax.swing.JFrame {
                 RegistrarUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(RegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
+        getContentPane().add(RegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 200, -1));
 
         BuscarReservación.setText("Buscar Reservación");
         BuscarReservación.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +70,7 @@ public class Menu extends javax.swing.JFrame {
                 BuscarReservaciónActionPerformed(evt);
             }
         });
-        getContentPane().add(BuscarReservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 140, -1));
+        getContentPane().add(BuscarReservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 200, -1));
 
         HistorialHabitación.setText(" Historial de Habitación  ");
         HistorialHabitación.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +78,15 @@ public class Menu extends javax.swing.JFrame {
                 HistorialHabitaciónActionPerformed(evt);
             }
         });
-        getContentPane().add(HistorialHabitación, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 160, -1));
+        getContentPane().add(HistorialHabitación, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 200, -1));
+
+        jButton6.setText("Guardar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         jButton4.setText("Check-in");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +94,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
 
         jButton5.setText("Check-out");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +102,10 @@ public class Menu extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, -1, -1));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, -1, -1));
+
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo.png"))); // NOI18N
+        getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 300, 190));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 390));
@@ -145,6 +148,57 @@ public class Menu extends javax.swing.JFrame {
         windowEstado.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_RegistrarUsuarioActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        
+        try{
+            if (Reserva != null){
+            String reservas = "ci,primer_nombre,segundo_nombre,email,genero,tipo_hab,celular,llegada,salida\n";
+            String datosReservas = Reserva.reservasToSave();
+            PrintWriter pw = new PrintWriter("test\\reservas.txt");
+            pw.print(reservas+datosReservas);
+            pw.close();
+            JOptionPane.showMessageDialog(null, "Guardado exitoso!");
+            }
+            
+            if(Estado != null){
+                String estados = "num_hab,primer_nombre,apellido,email,genero,celular,llegada\n";
+                for (int i = 0; i< Estado.getSize(); i++){
+                    if (Estado.getArray_reservas()[i] != null){
+                        Estado pointer = Estado.getArray_reservas()[i];
+                        while (pointer != null) {
+                            String num;
+                            if (pointer.getNum_habitacion() == -1){
+                            num = "";
+                            } else{
+                            num = Integer.toString(pointer.getNum_habitacion());
+                            }
+                            estados += num+","+pointer.getNombre()+","+pointer.getApellido()+","+pointer.getEmail()+","+pointer.getGender()+","+pointer.getCelular()+","+pointer.getLlegada()[0]+"/"+pointer.getLlegada()[1]+"/"+pointer.getLlegada()[2]+"\n";
+                            pointer = pointer.getNext();
+                        }
+                        
+                    }
+                    
+                }
+                PrintWriter pw = new PrintWriter("test\\estado.txt");
+                pw.print(estados);
+                pw.close();
+            }
+            if(Historico != null){
+                String historico = "ci,primer_nombre,apellido,email,genero,llegada,num_hab\n";
+                String datosHistorico = Historico.historicToSave();
+                PrintWriter pw = new PrintWriter("test\\historial.txt");
+                pw.print(historico+datosHistorico);
+                pw.close();
+                JOptionPane.showMessageDialog(null, "Guardado exitoso!");
+            }
+            
+            
+        } catch (Exception err){
+            JOptionPane.showMessageDialog(null, err);
+        }       
+       
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     public HashTableEstadoActual getEstado() {
         return Estado;
@@ -204,37 +258,38 @@ public class Menu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Menu(Estado, Reserva, Historico, list_habitaciones).setVisible(true);
-                Imagen im = new Imagen(Logo);
-                Logo.add(im).repaint();
+
             }
         });
     }
+    
     public void initDatos(){
     HashTableEstadoActual e = new HashTableEstadoActual();
     e.initHashTableEstado();
-    this.Estado = e;
+    Menu.Estado = e;
     
     AVL_Reserva r = new AVL_Reserva();
     r.initABB_Reserva();
-    this.Reserva = r;
+    Menu.Reserva = r;
     
     AVL_Historico h = new AVL_Historico();
     h.initABB_Historial();
-    this.Historico = h;
+    Menu.Historico = h;
     
     ListaHabitacion l = new ListaHabitacion();
     l.initlistaHabitaciones();
     l.add_client_to_hab(Estado);
-    this.list_habitaciones = l;
+    Menu.list_habitaciones = l;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BuscarReservación;
     private javax.swing.JLabel Fondo;
     private javax.swing.JButton HistorialHabitación;
-    private static javax.swing.JPanel Logo;
+    private javax.swing.JLabel Logo;
     private javax.swing.JButton RegistrarUsuario;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     // End of variables declaration//GEN-END:variables
 }

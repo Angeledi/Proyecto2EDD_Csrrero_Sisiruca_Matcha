@@ -63,7 +63,8 @@ public class CheckOut extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(222, 222, 222));
-        jLabel1.setFont(new java.awt.Font("Elephant", 0, 19)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Elephant", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CHECK-OUT");
         jLabel1.setToolTipText("");
@@ -71,32 +72,35 @@ public class CheckOut extends javax.swing.JFrame {
 
         jLabel4.setBackground(new java.awt.Color(222, 222, 222));
         jLabel4.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("APELLIDO:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 70, 30));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 70, 30));
 
         jLabel5.setBackground(new java.awt.Color(222, 222, 222));
         jLabel5.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("NOMBRE:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 70, 30));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 70, 30));
 
         InputNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InputNombreActionPerformed(evt);
             }
         });
-        getContentPane().add(InputNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 140, 30));
+        getContentPane().add(InputNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 140, 30));
 
         InputApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InputApellidoActionPerformed(evt);
             }
         });
-        getContentPane().add(InputApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 140, 30));
+        getContentPane().add(InputApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 140, 30));
 
         jLabel3.setBackground(new java.awt.Color(222, 222, 222));
         jLabel3.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("INGRESE EL NOMBRE Y APELLIDO DEL HUÉSPED Y TERMINAR SU ESTADIA:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 480, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 480, 30));
 
         BackToMenu.setText("Volver");
         BackToMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +108,7 @@ public class CheckOut extends javax.swing.JFrame {
                 BackToMenuActionPerformed(evt);
             }
         });
-        getContentPane().add(BackToMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, -1));
+        getContentPane().add(BackToMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 80, 30));
 
         SearchHistoryRoomClient.setText("Realizar");
         SearchHistoryRoomClient.addActionListener(new java.awt.event.ActionListener() {
@@ -112,10 +116,10 @@ public class CheckOut extends javax.swing.JFrame {
                 SearchHistoryRoomClientActionPerformed(evt);
             }
         });
-        getContentPane().add(SearchHistoryRoomClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, -1, -1));
+        getContentPane().add(SearchHistoryRoomClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 90, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 320));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 280));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -144,9 +148,12 @@ public class CheckOut extends javax.swing.JFrame {
         if(e == null){
             JOptionPane.showMessageDialog(null, "Este huésped no se encuentra registrado!");
         } else {
+            int opcion = JOptionPane.showConfirmDialog(null, "¿Desea continuar con el proceso?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                   
+            if (opcion == JOptionPane.YES_OPTION) {
             String str;
             if (e.getCedula() == -1) {
-                str = "No disponible, no hizo reservacion.";
+                str = "No disponible no hizo reservacion";
             } else {
                 str = Integer.toString(e.getCedula());
             }
@@ -154,11 +161,14 @@ public class CheckOut extends javax.swing.JFrame {
             
             Historico h = new Historico(str, e.getNombre(), e.getApellido(), e.getEmail(), e.getGender(), e.llegadatoString(), e.getNum_habitacion());
             
-            Historico.insertar(h);  
-            Estado.borrar_Estado(nombre, apellido);
+            Historico.agregar(h);  
+            Estado.eliminarEstado(nombre, apellido);
             Habitaciones.desocuparHabitacion(e.getNum_habitacion());
             JOptionPane.showMessageDialog(null, "El Cliente ha dejado las instalaciones:\n"+"Nombre: "+e.getNombre()+" "+e.getApellido()+"\n"+"Cedula: " + str+"\nEmail: "+ e.getEmail()+"\nGenero: "+e.getGender()+"\nLlegada: "+ e.llegadatoString());
             JOptionPane.showMessageDialog(null, "La habitación " + e.getNum_habitacion()+ " ahora se encuentra disponible");
+            } else{
+                JOptionPane.showMessageDialog(null, "Check-out Cancelado, el cliente continua su estadia.");
+            }
         }
             
         } else{

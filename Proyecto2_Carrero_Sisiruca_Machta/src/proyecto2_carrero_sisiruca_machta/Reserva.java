@@ -9,6 +9,8 @@ package proyecto2_carrero_sisiruca_machta;
  *
  * @author acarr
  */
+
+//Tipo de objeto reserva que se crea con los datos del txt reservas
 public class Reserva {
     private int cedula;
     private String nombre;
@@ -114,12 +116,12 @@ public class Reserva {
     public void setNext(Reserva next) {
         this.next = next;
     }
-    
+    //v1 metodo que crea un string con el formato colocado de los datos de la Reserva
     public String printCliente(){
         String str = ("Nombre: "+nombre+" "+apellido+", Cedula: "+cedula+", Email: "+email+", Genero: "+gender+", Tipo de Habitacion: "+ tipo_habitacion+", Celular: "+celular+", Llegada: "+llegada[0]+"/"+llegada[1]+"/"+llegada[2]+", Salida: "+salida[0]+"/"+salida[1]+"/"+salida[2]);
         return str;
     }
-    
+    //v2 del metodo que crea un string con el formato colocado de los datos de la Reserva, el formato es diferente
     public String printCliente2(){
         String str = ("Nombre: "+nombre+" "+apellido+"\n"+"Cedula: "+cedula+"\n"+"Email: "+email+"\n"+"Genero: "+gender+"\n"+"Tipo de Habitacion: "+ tipo_habitacion+"\n"+"Celular: "+celular+"\n"+"Llegada: "+llegada[0]+"/"+llegada[1]+"/"+llegada[2]+"\n"+"Salida: "+salida[0]+"/"+salida[1]+"/"+salida[2]);
         return str;

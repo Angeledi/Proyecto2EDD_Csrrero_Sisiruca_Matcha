@@ -8,6 +8,7 @@ package proyecto2_carrero_sisiruca_machta;
  *
  * @author sisir
  */
+//Clase historico que guarada los datos de los clientes historicos para cada habitacion, atra vez del txt historico
 public class Historico {
     private String dni;
     private String firstName;

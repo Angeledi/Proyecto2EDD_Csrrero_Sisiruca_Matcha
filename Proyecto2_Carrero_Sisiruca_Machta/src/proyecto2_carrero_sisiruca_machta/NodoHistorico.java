@@ -8,6 +8,7 @@ package proyecto2_carrero_sisiruca_machta;
  *
  * @author sisir
  */
+//nodo historico con elemento historico del AVL_historico
 public class NodoHistorico {
     private Historico cliente;
     private NodoHistorico izquierdo;

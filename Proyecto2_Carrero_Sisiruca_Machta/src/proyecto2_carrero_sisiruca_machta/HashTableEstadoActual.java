@@ -14,12 +14,13 @@ import javax.swing.JOptionPane;
  *
  * @author acarr
  */
+//Clase hashtable que almacena todos los Estados clientes actuales del hotel, usando el metodo de encadenamiento
 public class HashTableEstadoActual {
     private Estado[] array_estado;
     private int size;
     
     public HashTableEstadoActual(){
-        this.size = 2000;
+        this.size = 3000;
         this.array_estado = new Estado[size];
     }
 
@@ -38,6 +39,7 @@ public class HashTableEstadoActual {
     public void setSize(int size) {
         this.size = size;
     }
+    //V1 de la funcion hashTable toma el tipo de objeto Estado para tomar su nombre y apellido y juntarlos para formar un index basado en el tipo de funcion hash, tranforma a ascii cada caracter del nombre para despues sumarlo al valor index, despue slo multiplica por el indice del string y lo suma index actual, el resultado se divide % con el tamano del la hastable y el resultado siempre dara un numero que se encuentra entre el tamano del array de hashtable, ese numero resultante es el index en que se encuentra
     public int hashFunction(Estado cliente){
         String cliente_nom = cliente.getNombre()+cliente.getApellido();
         int index = 0;
@@ -49,7 +51,7 @@ public class HashTableEstadoActual {
         index = index % this.getSize();
         return index;
     }
-    
+    // lo mismo que la funcion anterior, hashfunction pero se le pasa de parametro los strings de nombr ey apellido dle cliente de una vez
     public int hashFunctionString(String nombre_apellido){
         String cliente_nom = nombre_apellido;
         int index = 0;
@@ -61,7 +63,7 @@ public class HashTableEstadoActual {
         index = index % this.getSize();
         return index;
     }
-    
+    // v2 del metodo hashfunction investigue que para crear funciones hash que codifiquen el string ingresado puede ser muy eficiente para evitar colisiones el numero 31 ya que al parecer matematicamente tiene propiedades unicas en este tipo de funciones, esta version nos se uso pero me parece fino ponerlo por la ivestigacion, esta funcion no funciona con string muy largos
     public int hashFunction2(Estado c){
         int hash = 0;
         int p = 31;
@@ -73,6 +75,7 @@ public class HashTableEstadoActual {
         }
     return hash % getSize();
     }
+    //V3 de las funcion hashfuntion otra investigacion de como hacer otro tipo de funcion hash para codificar, no funciona tampoco con strings larlos y tampoco se uso en el proyecto
     public int hashFunction3(Reserva c) {
         String s = c.getNombre();
         int hashValue = 0;
@@ -95,9 +98,8 @@ public class HashTableEstadoActual {
         return aux;
     }
     
-    
+    //metodo que inciia todos los datos y crea los objestos Estado para la hashtbale
     public void initHashTableEstado(){
-        HashTableEstadoActual aux = new HashTableEstadoActual(); // revisar 
         String line;
         String clientes_txt = "";
         String path = "test\\estado.txt";
@@ -131,9 +133,7 @@ public class HashTableEstadoActual {
                         int[] llegada = new int[]{Integer.parseInt(llegada_aux[0]),Integer.parseInt(llegada_aux[1]),Integer.parseInt(llegada_aux[2])};
          
                         Estado nuevo_cliente = new Estado(num_habitacion, primer_nombre, apellido, email, genero, celular, llegada);
-                        int index1 = hashFunction(nuevo_cliente);
-                       // nuevo_cliente.print();
-    
+                        int index1 = hashFunction(nuevo_cliente);    
                       
                         insertEstado(nuevo_cliente, index1);
                         
@@ -146,18 +146,7 @@ public class HashTableEstadoActual {
         }
     }
         
-    public void insertCliente(Estado c, int index){
-        if (!isInHash(c)) {
-            while ( getArray_reservas()[index] != null) {
-                index++;
-            }
-           // JOptionPane.showMessageDialog(null, "La clave del cliente reservado es " + c.getNombre()+" "+c.getApellido()+ " es: " + index);
-            getArray_reservas()[index] = c;
-        } else{
-            JOptionPane.showMessageDialog(null, "¡ERROR!\nEl documento ya está registrado");
-        }
-    }
-    
+    //funcion que inserta el Etado en el indice dado(calculado prefiamente con hashfunction) y como es una hashtable encadenada busca si es el ultimo de la lista para insertarlo despues de ese.
     public void insertEstado(Estado cliente, int index) {
         
         if (this.array_estado[index] == null) {
@@ -170,7 +159,7 @@ public class HashTableEstadoActual {
             pointer.setNext(cliente);
         }
     }
-    
+    //metodo que busca el Estado a travez de su nombre y apellido, busvando en el index atravez d ehashfunction y a su vez en las listas en ese index
     public Estado getEstado(String nombre, String apellido) {
         int index = hashFunctionString(nombre+apellido);
         Estado pointer = array_estado[index];
@@ -183,42 +172,29 @@ public class HashTableEstadoActual {
         return null;
     }
     
-    public Estado borrar_Estado(String nombre, String apellido) {
+    // funcion que recorre va al indice en que se encuentra guardado ese nombre y appelido y va recorriendo la lista de Estados para encontrar el que coincide y eliminarlo
+    public void eliminarEstado(String nombre, String apellido) {
     int index = hashFunctionString(nombre+apellido);
-        Estado pointer = array_estado[index];
-        Estado pointer2 = pointer.getNext();
-        while (pointer2 != null) {
-            
-            if (pointer2.getNombre().equals(nombre) && pointer2.getApellido().equals(apellido)) {
-                Estado pointer3 = (Estado) pointer2.getNext();
-              //  System.out.println(pointer3.getApellido());
-                pointer.setNext(pointer3);
-               // pointer2.setNext(null);
-                return pointer2;
+
+        if (array_estado[index] != null) {
+            Estado pointer = null;
+            Estado pointer2 = array_estado[index];
+
+            while (pointer2 != null) {
+                if (pointer2.getNombre().equals(nombre) &&
+                pointer2.getApellido().equals(apellido)) {
+                    if (pointer == null) {
+                        array_estado[index] = pointer2.getNext();
+                    } else {
+                        pointer.setNext(pointer2.getNext());
+                    }
+                    return;
+                }
+                pointer = pointer2;
+                pointer2 = pointer2.getNext();
             }
-            pointer = pointer2.getNext();
-            pointer2 = pointer.getNext();
         }
-        
-        return null;
     }
-    public Estado borrar(String nombre, String apellido){
-        int index = hashFunctionString(nombre+apellido);
-        Estado pointer = array_estado[index];
-        
-        Estado pointer2;
-        int cont = 0;
-        while (pointer != null) {
-            if (pointer.getNombre().equals(nombre) && pointer.getApellido().equals(apellido)){
-            
-            }
-            pointer = (Estado) pointer.getNext();
-            cont++;
-        }
-        pointer2 = (Estado) pointer.getNext();
-        pointer.setNext((Estado) pointer2.getNext());
-        pointer2.setNext(null);
-        return pointer2;
-    }
-     
+    
+    
 }

@@ -9,6 +9,7 @@ package proyecto2_carrero_sisiruca_machta;
  *
  * @author acarr
  */
+//La clase de dato Estado para almacenar la informacion de losclientes hospedados actualmente
 public class Estado {
     private int num_habitacion;
     private String nombre;
@@ -102,14 +103,14 @@ public class Estado {
     public void setCedula(int cedula) {
         this.cedula = cedula;
     }
-    
+    //metodo que tranforma el array de datos de llegada a uns string
     public String llegadatoString(){
         String str = llegada[0]+"/"+llegada[1]+"/"+llegada[2];
         System.out.println(str);
         return str;
     
     }
-    
+    //metodo que imprime los datos del cliente, se usa para pruebas
     public void print(){
         Object str = getNum_habitacion();
         if (getNum_habitacion() == -1){

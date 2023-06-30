@@ -8,6 +8,7 @@ package proyecto2_carrero_sisiruca_machta;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,7 +34,7 @@ public class AVL_Reserva {
         return getRaiz() == null;
     }
     
-    
+    //primera version del metodo buscar, se usa para buscar un cliente reserva a travez de su metodo, difere del metodo buscar2 en que este usa un while para recorrer el arbol
     public Reserva buscar(int cedula) {
         NodoReserva nodoActual = raiz;
         
@@ -48,7 +49,7 @@ public class AVL_Reserva {
         }
         return null;
     }
-    
+    //metodo que lee el txt de reservas para crear los clientes reservas de la clase Reserva y despues los agrega al arbol balanceado
     public void initABB_Reserva(){
         AVL_Reserva Reservas = new AVL_Reserva();
         String line;
@@ -84,7 +85,6 @@ public class AVL_Reserva {
          
                         Reserva nuevo_cliente = new Reserva(cedula, primer_nombre, apellido, email, genero, tipo_hab, celular, llegada, salida);
                        
-                      //  nuevo_cliente.printCliente();
                         agregar(nuevo_cliente);
 
                 }               
@@ -94,7 +94,8 @@ public class AVL_Reserva {
             JOptionPane.showMessageDialog(null, "Error al cargar base de Datos");
         }
     }
-  
+    
+    //Metodo que imprime todos los apellidos de los elementos en el arbol, no se uso en el proyecto, solo se uso para las pruebas
     public void preOrden(NodoReserva raiz) {
         if (raiz != null) {
             System.out.println("[ " + raiz.getReserva().getApellido() + " ]");
@@ -103,18 +104,17 @@ public class AVL_Reserva {
         }
     }
     
-    public void preOrden_to_string(){}
-
-    
+    //Agregar es una funcion que llama a la version recursiva de si misma para ir agregando los clientes Reservas al arbol balanceado
     public void agregar(Reserva reservacion) {
         raiz = agregarRec(raiz, reservacion);
     }
-    
+    //buscar2 es la segunda version del metodo buscar, en esta ser usa funciones recursivas para recorrer el arbol balanceado, por lo que se asegura que la busqueda de una reserva por su numero de cedula cumpla con O(Log N) esta es la que se uso como final en el proyecto
     public Reserva buscar2(int cedula) {
         return buscarRec(raiz, cedula);
     }
-
+    //version recursiva del metddo agregar, mantiene el balance del arbol en cada insercion con los metodos de rotacion derecha y rotacion izquiera, calculando su alturas y decidiendo cual usar a travez del factor de balance
     private NodoReserva agregarRec(NodoReserva nodo, Reserva reservacion) {
+       //analiza hacia que direccion debe estar segun el numero dado
         if (nodo == null) {
             return new NodoReserva(reservacion);
         } else if (reservacion.getCedula() < nodo.getReserva().getCedula()) {
@@ -125,9 +125,11 @@ public class AVL_Reserva {
         
         int alturaIzquierdo = (nodo.getIzquierdo() != null) ? nodo.getIzquierdo().getAltura() : 0;
         int alturaDerecho = (nodo.getDerecho() != null) ? nodo.getDerecho().getAltura() : 0;
-        
+      
+       // calcula en factor balance atravez de las alturas del sub arbol derecho e izquierdo
+      
         int factorBalance = alturaIzquierdo - alturaDerecho;
-        
+        //si el factor de balnace es diferente de 1 o -1 entonces balancea el arbol en la direccion que sea necesario
         if (factorBalance > 1) {
             if (reservacion.getCedula() < nodo.getIzquierdo().getReserva().getCedula()) {
                 nodo = rotacionDerecha(nodo);
@@ -149,6 +151,7 @@ public class AVL_Reserva {
         return nodo;
     }
     
+    //parte recursiva del metodo buyscar2
     private Reserva buscarRec(NodoReserva nodo, int cedula) {
         if (nodo == null) {
             return null;
@@ -160,7 +163,7 @@ public class AVL_Reserva {
             return buscarRec(nodo.getDerecho(), cedula);
         }
     }
-    
+    // metodo que hace la rpotacion izquierda del arvol segun el nodo insertado y el factor balance
     private NodoReserva rotacionIzquierda(NodoReserva nodo) {
         NodoReserva nuevoNodo = nodo.getDerecho();
         nodo.setDerecho(nuevoNodo.getIzquierdo());
@@ -173,7 +176,7 @@ public class AVL_Reserva {
         
         return nuevoNodo;
     }
-    
+    // metodo que hace la rpotacion derecha del arvol segun el nodo insertado y el factor balance
     private NodoReserva rotacionDerecha(NodoReserva nodo) {
         NodoReserva nuevoNodo = nodo.getIzquierdo();
         nodo.setIzquierdo(nuevoNodo.getDerecho());
@@ -187,10 +190,12 @@ public class AVL_Reserva {
         return nuevoNodo;
     }
     
+    
+    // funcion recursiva que elimina un nodo del arbol, se usa para el checkin ya que se toma la reserva y despues se convierta un elemento Estado para insertarlo en la hastable, para ello se usa esta funcion para borrar el elemento reserva asociado a ese cliente
     public void eliminar(int cedula) {
     raiz = eliminarRec(raiz, cedula);
     }
-    
+    // parte recursuva de eliminar
     private NodoReserva eliminarRec(NodoReserva nodo, int cedula) {
     if (nodo == null) {
         return null;
@@ -199,14 +204,14 @@ public class AVL_Reserva {
     } else if (cedula > nodo.getReserva().getCedula()) {
         nodo.setDerecho(eliminarRec(nodo.getDerecho(), cedula));
     } else {
-        if (nodo.getIzquierdo() == null && nodo.getDerecho() == null) { // Caso 1: el nodo no tiene hijos
+        if (nodo.getIzquierdo() == null && nodo.getDerecho() == null) { //el nodo no tiene hijos
             return null;
-        } else if (nodo.getIzquierdo() == null || nodo.getDerecho() == null) { // Caso 2: el nodo tiene un hijo
+        } else if (nodo.getIzquierdo() == null || nodo.getDerecho() == null) { // el nodo tiene un hijo
             NodoReserva nuevoNodo = (nodo.getIzquierdo() != null) ? nodo.getIzquierdo() : nodo.getDerecho();
             nodo.setReserva(nuevoNodo.getReserva());
             nodo.setIzquierdo(nuevoNodo.getIzquierdo());
             nodo.setDerecho(nuevoNodo.getDerecho());
-        } else { // Caso 3: el nodo tiene dos hijos
+        } else { // el nodo tiene dos hijos
             NodoReserva sucesor = sucesorInmediato(nodo.getDerecho());
             nodo.setReserva(sucesor.getReserva());
             nodo.setDerecho(eliminarRec(nodo.getDerecho(), sucesor.getReserva().getCedula()));
@@ -238,14 +243,14 @@ public class AVL_Reserva {
 
     return nodo;
 }
-
+// es una funcion que calcula
 private NodoReserva sucesorInmediato(NodoReserva nodo) {
     while (nodo.getIzquierdo() != null) {
         nodo = nodo.getIzquierdo();
     }
     return nodo;
 }
-
+//metodo recursivo qye transforma todas las reservas a un string con el formato colocado para mostrar la informacion de las reservas
 public String reservasToString() {
     return reservasToString(raiz, "");
 }
@@ -262,7 +267,27 @@ private String reservasToString(NodoReserva nodo, String cadena) {
     return cadena;
 }
 
+//metodo que transforma todos los datos de reserva a unstring para reescribirlos en los txt
+public String reservasToSave() {
+    return reservasToSaveRec(raiz, "");
+}
 
-//Cabe destacar que esta implementación utiliza un enfoque de inserción recursivo que mantiene el árbol balanceado mediante las rotaciones AVL, lo que garantiza que la búsqueda tenga una complejidad temporal de O(log N). Además, el método `buscar` también utiliza una búsqueda recursiva que recorre el árbol de forma eficiente para encontrar la reserva correspondiente a la cédula del cliente.
-    
+private String reservasToSaveRec(NodoReserva nodo, String cadena) {
+    if (nodo == null) {
+        return cadena;
+    }
+
+    cadena = reservasToSaveRec(nodo.getIzquierdo(), cadena);
+    cadena += formatearCedula(nodo.getReserva().getCedula())+","+nodo.getReserva().getNombre()+","+nodo.getReserva().getApellido()+","+nodo.getReserva().getEmail()+","+nodo.getReserva().getGender()+","+nodo.getReserva().getTipo_habitacion()+","+nodo.getReserva().getCelular()+","+nodo.getReserva().getLlegada()[0]+"/"+nodo.getReserva().getLlegada()[1]+"/"+nodo.getReserva().getLlegada()[2]+","+nodo.getReserva().getSalida()[0]+"/"+nodo.getReserva().getSalida()[1]+"/"+nodo.getReserva().getSalida()[2]+ "\n";
+    cadena = reservasToSaveRec(nodo.getDerecho(), cadena);
+
+    return cadena;
+}
+//metodo que transforma las cedulas devuelta a formato con puntos decimales, durante el pryecto se utiliza cedula en valor int, pero comose guarda en los txt como valor con punto decimal se usa esta funcion [ara psarlo de vuelta
+public String formatearCedula(int cedula) {
+    DecimalFormat formato = new DecimalFormat("###,###,###");
+    String cedulaFormateada = formato.format(cedula).replace(",", ".");
+    return cedulaFormateada;
+}
+
 }

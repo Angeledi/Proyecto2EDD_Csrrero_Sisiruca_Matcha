@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 import proyecto2_carrero_sisiruca_machta.AVL_Reserva;
 import proyecto2_carrero_sisiruca_machta.AVL_Historico;
 import proyecto2_carrero_sisiruca_machta.Estado;
-
 import proyecto2_carrero_sisiruca_machta.HashTableEstadoActual;
 import proyecto2_carrero_sisiruca_machta.Historico;
 import proyecto2_carrero_sisiruca_machta.ListaHabitacion;
@@ -70,40 +69,44 @@ public class MenuEstado extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(222, 222, 222));
-        jLabel1.setFont(new java.awt.Font("Elephant", 0, 19)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Elephant", 0, 26)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("BUSCAR CLIENTES ACTUALES");
         jLabel1.setToolTipText("");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 450, 50));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 490, 50));
 
         jLabel4.setBackground(new java.awt.Color(222, 222, 222));
         jLabel4.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("APELLIDO:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 70, 30));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 70, 30));
 
         jLabel5.setBackground(new java.awt.Color(222, 222, 222));
         jLabel5.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("NOMBRE:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 70, 30));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 70, 30));
 
         InputApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InputApellidoActionPerformed(evt);
             }
         });
-        getContentPane().add(InputApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 120, 30));
+        getContentPane().add(InputApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 120, 30));
 
         InputNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InputNombreActionPerformed(evt);
             }
         });
-        getContentPane().add(InputNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 120, 30));
+        getContentPane().add(InputNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 120, 30));
 
         jLabel3.setBackground(new java.awt.Color(222, 222, 222));
         jLabel3.setFont(new java.awt.Font("Eras Bold ITC", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("INGRESE LOS DATOS DEL CLIENTE A BUSCAR (NOMBRE Y APELLIDO)");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 440, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 440, 30));
 
         BackToMenu.setText("Volver");
         BackToMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +122,7 @@ public class MenuEstado extends javax.swing.JFrame {
                 MostrarAllClientsActionPerformed(evt);
             }
         });
-        getContentPane().add(MostrarAllClients, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, -1));
+        getContentPane().add(MostrarAllClients, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, -1, -1));
 
         AddClient.setText("Agregar Nuevo Cliente");
         AddClient.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +130,7 @@ public class MenuEstado extends javax.swing.JFrame {
                 AddClientActionPerformed(evt);
             }
         });
-        getContentPane().add(AddClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, -1, -1));
+        getContentPane().add(AddClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, -1, -1));
 
         SearchClientEstado.setText("Buscar");
         SearchClientEstado.addActionListener(new java.awt.event.ActionListener() {
@@ -135,13 +138,13 @@ public class MenuEstado extends javax.swing.JFrame {
                 SearchClientEstadoActionPerformed(evt);
             }
         });
-        getContentPane().add(SearchClientEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, -1, -1));
+        getContentPane().add(SearchClientEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, -1, -1));
 
         textClient.setColumns(20);
         textClient.setRows(5);
         jScrollPane1.setViewportView(textClient);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 490, 170));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 490, 170));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 380));

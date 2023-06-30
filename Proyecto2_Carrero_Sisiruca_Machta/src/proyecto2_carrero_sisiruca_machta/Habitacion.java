@@ -9,6 +9,7 @@ package proyecto2_carrero_sisiruca_machta;
  *
  * @author acarr
  */
+//clase habotacion con los datos de cada habitacion
 public class Habitacion {
     private int num;
     private String tipo;
