@@ -158,7 +158,7 @@ public class Menu extends javax.swing.JFrame {
             PrintWriter pw = new PrintWriter("test\\reservas.txt");
             pw.print(reservas+datosReservas);
             pw.close();
-            JOptionPane.showMessageDialog(null, "Guardado exitoso!");
+            
             }
             
             if(Estado != null){
@@ -190,8 +190,8 @@ public class Menu extends javax.swing.JFrame {
                 PrintWriter pw = new PrintWriter("test\\historial.txt");
                 pw.print(historico+datosHistorico);
                 pw.close();
-                JOptionPane.showMessageDialog(null, "Guardado exitoso!");
             }
+        JOptionPane.showMessageDialog(null, "Guardado exitoso!");
             
             
         } catch (Exception err){
